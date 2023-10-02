@@ -1,0 +1,34 @@
+/* body{
+    background-color: red;
+} */
+#detalhes{
+    /* color: red; */
+    background-color: #EDAB3B;
+}
+.btn{
+    background-color: #EDAB3B;
+}
+.btn:hover {
+    background-color: #d8982a;
+}
+.card > img{
+    /* width: 20vh; */
+    height: 35vh;
+
+}
+.card-text{
+    height: 10vh;
+}
+
+.accordion-button:hover {
+    background-color: #f5a823;
+}
+.accordion-button:not(.collapsed) {
+
+    background-color: #EDAB3B;
+    /* background-color: #be8f3d; */
+
+}
+a{
+    text-decoration: none;
+}
