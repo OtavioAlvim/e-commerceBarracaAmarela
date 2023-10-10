@@ -55,14 +55,14 @@
         </div>
     </nav>
     <br><br><br>
-    <div class="container">
+    <div class="container" >
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form class="row g-3">
+                    <form class="row g-3" id="consulta_produto">
                         <div class="col">
                             <label for="inputPassword2" class="visually-hidden">Password</label>
-                            <input type="text" class="form-control" id="inputPassword2" placeholder="Pesquise o Produto" autofocus>
+                            <input type="text" class="form-control" id="descricao_prod" placeholder="Pesquise o Produto" autofocus>
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn mb-3">Pesquisar</button>
@@ -76,103 +76,24 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <select class="form-select form-select-sm" aria-label="Small select example">
-                        <option selected>selecione a familia</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select form-select-sm" aria-label="Small select example" id="seu_select">
+                        <option value="" selected>selecione a familia</option>
+                        <option value="1">PÉ DE MOLEQUE</option>
+                        <option value="2">PÉ DE MOÇA</option>
+                        <option value="3">PAÇOCÃO</option>
+                        <option value="1">PAÇOCA ROLHA</option>
+                        <option value="2">AMENDOIM TEMPERADO</option>
+                        <option value="3">GLOBAL</option>
+                        <option value="1">REFRIGERANTES</option>
+                        <option value="2">AGUA</option>
+                        <option value="3">ALCOLICO</option>
                     </select><br>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-4 align-items-start g-2">
-                <a href="./detalhes.php">
-                    <div class="col">
-                        <div class="card">
-                            <img src="../assets/img/31e52d4a-47d2-11ec-8c7a-0242ac120005.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">POTE AMENDOIN</h5>
-                                <p class="card-text">amendoin com abobora e rucula.</p>
-                                <p>R$ 10,00</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+        <div class="container" id="conteudo">
 
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/1d1d1cb0-47d2-11ec-a274-0242ac120006.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">PORE AMENDOIN</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/4b4a63d0-47d3-11ec-bb90-0242ac120002.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">AMENDOIN CARAMELO</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/4e49e3bc-47d3-11ec-bc33-0242ac120005.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">AMENDOIN CARAMELO</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/31e52d4a-47d2-11ec-8c7a-0242ac120005.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">POTE AMENDOIN</h5>
-                            <p class="card-text">amendoin com abobora e rucula.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/1d1d1cb0-47d2-11ec-a274-0242ac120006.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">PORE AMENDOIN</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/4b4a63d0-47d3-11ec-bb90-0242ac120002.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">AMENDOIN CARAMELO</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="../assets/img/4e49e3bc-47d3-11ec-bc33-0242ac120005.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p>R$ 10,00</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -232,6 +153,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/pagina-inicial.js" ></script>
 
 </body>
 

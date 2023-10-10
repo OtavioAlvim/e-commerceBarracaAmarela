@@ -16,9 +16,11 @@
     height: 35vh;
 
 }
-.card-text{
+.card-text, .card-title{
+    /* background-color: red; */
     height: 10vh;
 }
+
 
 .accordion-button:hover {
     background-color: #f5a823;

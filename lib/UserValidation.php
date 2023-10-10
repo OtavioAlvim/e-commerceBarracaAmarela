@@ -4,7 +4,6 @@ require_once './conexao.php';
 if($_SERVER['REQUEST_METHOD'] === 'POST'):
     $username = $_POST['user'];
     $password = md5($_POST['pass']);
-echo $password;
     $sql = 'SELECT * FROM users WHERE email_user =:user AND password =:pass';
     $sql = $conexao->prepare($sql);
     $sql->bindValue(':user',$username);
