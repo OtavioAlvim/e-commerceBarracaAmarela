@@ -1,14 +1,15 @@
 <?php
 require_once './conexao.php';
 
-$sql = "SELECT p.FOTO_PRODUTO1 as imagem,p.* FROM produto p where p.FAMILIA IN (2,3,4,5,6,8,9) limit 2";
+$familia = $_GET['opcao'];
+$sql = "SELECT * FROM produto p JOIN familias f ON p.FAMILIA = f.CODIGO where p.FAMILIA = {$familia}";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <div class="container">
-    <p>Resultado da pesquisa: Pesquisa</p>
+    <p>RESULTADO DA PESQUISA : <?php echo $result[0]['DESCRICAO']?></p>
 </div>
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-4 align-items-start g-2">
     <?php
@@ -27,4 +28,5 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         </a>
     <?php }
     ?>
+
 </div>

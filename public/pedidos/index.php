@@ -8,7 +8,7 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>PAGINA INICIAL</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/pedidos.css">
 </head>
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">
@@ -70,8 +70,8 @@
                 <tr>
                     <th scope="row">1245</th>
                     <td>Pedido efetuado 21/10/2023</td>
-                    <td>aguardando aprovação...</td>
-                    <td>cancelar   informações</td>
+                    <td  ><p id="aprovacao">aguardando aprovação...</p> </td>
+                    <td class="d-flex"><p id="cancelar" >cancelar</p>  <p id="informacoes">informações</p>  </td>
                 </tr>
 
             </tbody>

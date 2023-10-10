@@ -1,0 +1,29 @@
+/* body{
+    background-color: red;
+} */
+#detalhes{
+    /* color: red; */
+    background-color: #EDAB3B;
+}
+.btn{
+    background-color: #EDAB3B;
+}
+.btn:hover {
+    background-color: #d8982a;
+}
+#aprovacao{
+    /* background-color: rgb(255, 71, 71); */
+    border-radius: 10px;
+}
+
+#cancelar{
+    background-color: rgb(255, 71, 71);
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+#informacoes{
+    background-color: rgb(61, 61, 219);
+    margin-right: 10px;
+    border-radius: 10px;
+}

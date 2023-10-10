@@ -55,7 +55,7 @@
     <div class="container">
         <div class="container">
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-2 align-items-start">
-            <div class="col border border-secondary">
+            <div class="col">
                     <!-- <img src="./img/1077c3a2-0a88-11ec-be8a-0242ac120002.jpeg" alt=""> -->
                     <img src="../assets/img/1d1d1cb0-47d2-11ec-a274-0242ac120006.jpeg" class="img-thumbnail" alt="..." style="height: 60vh;">
                 </div>
@@ -66,8 +66,7 @@
                             <div class="container">
                                 <h3 class="mt-2">SAGRADO ALICATE</h3>
                                 <hr>
-                                <p>FICHA TEKINIQUA: <br> Produto feito e desenvolvido por Chico Alicate e Aagrado alicate LTDA</p>
-                                <nav class="navbar fixed-bottom m-2">
+                                <nav class="navbar fixed-bottom m-1">
                                     <div class="row g-2">
                                         <div class="col-md">
                                             <div class="form-floating">
@@ -85,6 +84,8 @@
                                         </div>
                                     </div>
                                 </nav>
+                                <p><strong>FICHA TÉCNICA :</strong>  <br> Produto feito e desenvolvido por Chico Alicate e Aagrado alicate LTDA</p>
+
                             </div>
                         </div>
                     </div>
@@ -117,5 +118,4 @@
         </div>
     </div>
 </body>
-
 </html>

@@ -1,14 +1,15 @@
 <?php
 require_once './conexao.php';
 
-$sql = "SELECT p.FOTO_PRODUTO1 as imagem,p.* FROM produto p where p.FAMILIA IN (2,3,4,5,6,8,9) limit 4";
+$descricao = $_POST['pesquisa'];
+$sql = "SELECT p.FOTO_PRODUTO1 as imagem,p.* FROM produto p where p.FAMILIA IN (2,3,4,5,6,8,9)  and p.descricao like '%{$descricao}%'";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <div class="container">
-    <p>Resultado da pesquisa: Familia</p>
+    <p>RESULTADO DA PESQUISA : <?php echo $descricao?></p>
 </div>
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-4 align-items-start g-2">
     <?php
@@ -27,5 +28,4 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         </a>
     <?php }
     ?>
-
 </div>

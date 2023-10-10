@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -12,9 +13,6 @@
 </head>
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">
-
-    <!-- Example Code -->
-
     <nav class="navbar navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
@@ -49,13 +47,13 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    Bem vindo administrador
+                    <strong> Bem vindo administrador</strong>
                 </span>
             </div>
         </div>
     </nav>
     <br><br><br>
-    <div class="container" >
+    <div class="container">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -64,11 +62,8 @@
                             <label for="inputPassword2" class="visually-hidden">Password</label>
                             <input type="text" class="form-control" id="descricao_prod" placeholder="Pesquise o Produto" autofocus>
                         </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn mb-3">Pesquisar</button>
-                        </div>
                     </form>
-                </div>
+                </div><br>
             </div>
 
             <div class="row">
@@ -76,17 +71,8 @@
 
                 </div>
                 <div class="col-sm-4">
-                    <select class="form-select form-select-sm" aria-label="Small select example" id="seu_select">
-                        <option value="" selected>selecione a familia</option>
-                        <option value="1">PÉ DE MOLEQUE</option>
-                        <option value="2">PÉ DE MOÇA</option>
-                        <option value="3">PAÇOCÃO</option>
-                        <option value="1">PAÇOCA ROLHA</option>
-                        <option value="2">AMENDOIM TEMPERADO</option>
-                        <option value="3">GLOBAL</option>
-                        <option value="1">REFRIGERANTES</option>
-                        <option value="2">AGUA</option>
-                        <option value="3">ALCOLICO</option>
+                    <br>
+                    <select class="form-select form-select-sm" aria-label="Small select example" id="opcoes">
                     </select><br>
                 </div>
             </div>
@@ -128,17 +114,6 @@
                                 <td>4</td>
                                 <td>10,00</td>
                             </tr>
-                            <!-- <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -153,7 +128,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../assets/js/pagina-inicial.js" ></script>
+    <script src="../assets/js/pagina-inicial.js"></script>
 
 </body>
 
