@@ -48,25 +48,23 @@ $(document).ready(function () {
         });
     });
 
+
+
 });
 
+setInterval(function () {
+    // Código da solicitação AJAX aqui
+    $.ajax({
+        url: '../lib/CarregaCarrinhoCompra.php',
+        method: 'GET',
+        success: function (data) {
+            // Atualize o conteúdo da página com os dados iniciais
+            $('#testado').html(data);
+            console.log(data)
+        }
+    });
+
+}, 500);
 
 
 
-// setInterval(function () {
-//     // Código da solicitação AJAX aqui
-//     $.ajax({
-//         url: 'sua_url_aqui',
-//         method: 'GET',
-//         dataType: 'json', // ou o tipo de dados apropriado
-//         success: function (data) {
-//             // Lógica para lidar com a resposta bem-sucedida
-//             console.log('Solicitação AJAX concluída com sucesso:', data);
-//         },
-//         error: function (xhr, status, error) {
-//             // Lógica para lidar com erros na solicitação
-//             console.error('Erro na solicitação AJAX:', error);
-//         }
-//     });
-
-// }, 500);

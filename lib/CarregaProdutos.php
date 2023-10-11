@@ -17,7 +17,7 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $result['ABREVIA'] ?></h5>
                         <p class="card-text"><?php echo $result['OBSERVACOES'] ?></p>
-                        <p>R$ <?php echo $result['UNITARIO'] ?></p>
+                        <p>R$ <?php echo number_format($result['UNITARIO'], 2, ',', ' ') ?></p>
                     </div>
                 </div>
             </div>
