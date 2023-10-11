@@ -46,6 +46,7 @@
                     </li> -->
                 </ul>
                 <span class="navbar-text">
+                    <a href="http://youtube.com">
                     <button type="button" class="btn btn-light position-relative border-0">
                         ADMINISTRADOR
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -56,7 +57,7 @@
                         <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 2
                             </span> -->
-                    </button>
+                    </button></a>
                 </span>
             </div>
         </div>

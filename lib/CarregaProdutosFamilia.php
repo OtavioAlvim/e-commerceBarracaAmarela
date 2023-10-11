@@ -2,14 +2,14 @@
 require_once './conexao.php';
 
 $familia = $_GET['opcao'];
-$sql = "SELECT * FROM produto p JOIN familias f ON p.FAMILIA = f.CODIGO where p.FAMILIA = {$familia}";
+$sql = "SELECT * FROM produtos_integracao p WHERE p.FAMILIA = {$familia}";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <div class="container">
-    <p>RESULTADO DA PESQUISA : <?php echo $result[0]['DESCRICAO']?></p>
+    <p>RESULTADO DA PESQUISA : <?php echo $result[0]['NOMEFAMILIA']?></p>
 </div>
 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-4 align-items-start g-2">
     <?php

@@ -64,28 +64,8 @@
     </nav>
     <br><br><br>
 
-    <div class="container">
-        <table class="table text-center">
-            <thead>
-                <tr>
-                    <th class="col" scope="col">Pedido</th>
-                    <th class="col" scope="col">Descrição</th>
-                    <th class="col" scope="col">Status</th>
-                    <!-- <th class="col-2" scope="col">Operações</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1245</th>
-                    <td>Pedido efetuado 21/10/2023</td>
-                    <td>
-                        <p id="aprovacao">aguardando aprovação...</p>
-                    </td>
-                    <!-- <td class="d-flex"><p id="cancelar" >cancelar</p>  <p id="informacoes">informações</p>  </td> -->
-                </tr>
+    <div class="container"  id="pedidos">
 
-            </tbody>
-        </table>
     </div>
 
 

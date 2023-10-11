@@ -5,7 +5,7 @@ setInterval(function () {
         method: 'GET',
         success: function (data) {
             // Atualize o conteúdo da página com os dados iniciais
-            $('#testado').html(data);
+            $('#pedidos').html(data);
             console.log(data)
         }
     });
