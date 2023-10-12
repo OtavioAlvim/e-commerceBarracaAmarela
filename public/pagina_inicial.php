@@ -9,6 +9,7 @@
     <title>PAGINA INICIAL</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">
@@ -47,17 +48,17 @@
                 </ul>
                 <span class="navbar-text">
                     <a href="http://youtube.com">
-                    <button type="button" class="btn btn-light position-relative border-0">
-                        ADMINISTRADOR
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                        </svg>
+                        <button type="button" class="btn btn-light position-relative border-0">
+                            ADMINISTRADOR
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg>
 
-                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 2
                             </span> -->
-                    </button></a>
+                        </button></a>
                 </span>
             </div>
         </div>
@@ -99,33 +100,14 @@
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">CARRINHO</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <!-- <p>1 - Amendoin caradomelo R$10,00</p> -->
-                    <h1 id="testado"></h1>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="col-1">ID</th>
-                                <th scope="col" class="col-7">DESCRICAO</th>
-                                <th scope="col" class="col-1">QTD</th>
-                                <th scope="col" class="col-1">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Amendoin caradomelo</td>
-                                <td>4</td>
-                                <td>10,00</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="modal-body" id="itens">
+
                 </div>
                 <div class="modal-footer">
                     <p><strong>TOTAL DO PEDIDO R$ 00,00</strong> </p>
@@ -139,7 +121,15 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/js/pagina-inicial.js"></script>
-
+    <script>
+Swal.fire({
+//   position: 'top-end',
+  icon: 'success',
+  title: 'Bem vindo Chico Alicate',
+  showConfirmButton: false,
+  timer: 1500
+})
+    </script>
 </body>
 
 </html>

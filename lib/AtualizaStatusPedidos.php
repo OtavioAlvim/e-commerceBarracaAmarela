@@ -21,7 +21,7 @@ $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<table class="table text-center">
+<table class="table table-hover text-center">
     <thead>
         <tr>
             <th class="col" scope="col">PEDIDO</th>

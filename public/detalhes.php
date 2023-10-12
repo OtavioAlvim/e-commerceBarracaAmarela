@@ -67,7 +67,7 @@
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-2 align-items-start">
                 <div class="col">
                     <!-- <img src="./img/1077c3a2-0a88-11ec-be8a-0242ac120002.jpeg" alt=""> -->
-                    <img src="../assets/img/1d1d1cb0-47d2-11ec-a274-0242ac120006.jpeg" class="img-thumbnail" alt="..." style="height: 60vh;">
+                    <img src="../assets/img/coca.jpg" class="img-thumbnail" alt="..." style="height: 60vh; width: 100%;">
                 </div>
                 <div class="col">
                     <div class="col">
@@ -94,6 +94,7 @@
                                         </div>
                                     </div>
                                 </nav>
+                                <H4>R$ 7,59</H4>
                                 <p><strong>FICHA TÉCNICA :</strong> <br> Produto feito e desenvolvido por Chico Alicate e Aagrado alicate LTDA</p>
 
                             </div>

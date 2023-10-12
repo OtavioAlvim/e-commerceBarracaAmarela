@@ -19,13 +19,13 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         <?php
 
             foreach ($result as $result) { ?>
-            <a href="./detalhes.php">
+            <a href="./detalhes.php?item=<?php echo $result['CODITEM'] ?>">
                 <div class="col">
                     <div class="card">
                         <img src="data:image/jpg;base64, <?php echo base64_encode($result['FOTO_PRODUTO1']) ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $result['ABREVIA'] ?></h5>
-                            <p class="card-text"><?php echo $result['OBSERVACOES'] ?></p>
+                            <h5 class="card-title"><?php echo $result['DESCRICAO'] ?></h5>
+                            <!-- <p class="card-text"><?php echo $result['OBSERVACOES'] ?></p> -->
                             <p>R$ <?php echo $result['UNITARIO'] ?></p>
                         </div>
                     </div>

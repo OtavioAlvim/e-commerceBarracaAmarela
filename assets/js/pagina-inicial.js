@@ -8,29 +8,32 @@ $(document).ready(function () {
             $('#conteudo').html(data);
         }
     });
-        // Inicialização da página
-        $.ajax({
-            url: '../lib/CarregaFamilia.php',
-            method: 'GET',
-            success: function (data) {
-                // Atualize o conteúdo da página com os dados iniciais
-                $('#opcoes').html(data);
-            }
-        });
+    // Inicialização da página
+    $.ajax({
+        url: '../lib/CarregaFamilia.php',
+        method: 'GET',
+        success: function (data) {
+            // Atualize o conteúdo da página com os dados iniciais
+            $('#opcoes').html(data);
+        }
+    });
 
     // Quando o usuário seleciona uma opção no select
     $('#opcoes').change(function () {
         var selecionado = $(this).val();
         console.log(selecionado);
-        $.ajax({
-            url: '../lib/CarregaProdutosFamilia.php',
-            method: 'GET',
-            data: { opcao: selecionado },
-            success: function (data) {
-                // Atualize o conteúdo da página com os dados da opção selecionada
-                $('#conteudo').html(data);
-            }
-        });
+        if (selecionado !== '9999999999') {
+            $.ajax({
+                url: '../lib/CarregaProdutosFamilia.php',
+                method: 'GET',
+                data: { opcao: selecionado },
+                success: function (data) {
+                    // Atualize o conteúdo da página com os dados da opção selecionada
+                    $('#conteudo').html(data);
+                }
+            });
+        }
+
     });
 
     // Quando o usuário digitar algo no campo de pesquisa
@@ -53,16 +56,27 @@ $(document).ready(function () {
 });
 
 setInterval(function () {
-    // Código da solicitação AJAX aqui
+    // carrega os itens do carrinho
     $.ajax({
-        url: '../lib/CarregaCarrinhoCompra.php',
+        url: '../lib/CarregaCarrinhoItens.php',
         method: 'GET',
         success: function (data) {
             // Atualize o conteúdo da página com os dados iniciais
-            $('#testado').html(data);
+            $('#itens').html(data);
             console.log(data)
         }
     });
+
+        // carrega o total do carrinho
+        $.ajax({
+            url: '../lib/CarregaCarrinhoTotal.php',
+            method: 'GET',
+            success: function (data) {
+                // Atualize o conteúdo da página com os dados iniciais
+                $('#testado').html(data);
+                console.log(data)
+            }
+        });
 
 }, 500);
 
