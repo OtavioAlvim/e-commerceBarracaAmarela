@@ -1,5 +1,18 @@
+<?php
+require('../lib/login/verificaLogin.php');
+require('../lib/conexao.php');
+$idproduto = $_GET['item'];
+$sql = "SELECT * FROM produtos_integracao p WHERE p.CODITEM =:idproduto";
+$sql = $conexao->prepare($sql);
+$sql->bindValue(':idproduto', $idproduto);
+$sql->execute();
+$result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
+// print_r($result_id);
+
+?>
+
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -38,25 +51,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./pagina_inicial.php">Produtos</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Minha conta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre nós</a>
-                    </li> -->
                 </ul>
                 <span class="navbar-text">
-                    <button type="button" class="btn btn-light position-relative border-0">
-                        ADMINISTRADOR
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                        </svg>
-
-                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                2
-                            </span> -->
-                    </button>
+                    <a href="../lib/login/logout.php">
+                        <button type="button" class="btn btn-light position-relative border-0">
+                            <?php echo $_SESSION['razao'] ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg>
+                        </button></a>
                 </span>
             </div>
         </div>
@@ -66,15 +70,14 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-2 align-items-start">
                 <div class="col">
-                    <!-- <img src="./img/1077c3a2-0a88-11ec-be8a-0242ac120002.jpeg" alt=""> -->
-                    <img src="../assets/img/coca.jpg" class="img-thumbnail" alt="..." style="height: 60vh; width: 100%;">
+                    <img src="data:image/jpg;base64, <?php echo base64_encode($result_id[0]['FOTO_PRODUTO1']) ?>" class="img-thumbnail" alt="..." style="height: 60vh; width: 100%;">
                 </div>
                 <div class="col">
                     <div class="col">
                         <div class="mh-100" style="height: 70vh;">
 
                             <div class="container">
-                                <h3 class="mt-2">SAGRADO ALICATE</h3>
+                                <h3 class="mt-2"><?php echo $result_id[0]['DESCRICAO'] ?></h3>
                                 <hr>
                                 <nav class="navbar fixed-bottom m-1">
                                     <div class="row g-2">
@@ -94,8 +97,8 @@
                                         </div>
                                     </div>
                                 </nav>
-                                <H4>R$ 7,59</H4>
-                                <p><strong>FICHA TÉCNICA :</strong> <br> Produto feito e desenvolvido por Chico Alicate e Aagrado alicate LTDA</p>
+                                <H4>R$ <?php echo number_format($result_id[0]['UNITARIO'], 2, ',', ' ')  ?></H4>
+                                <p><strong>FICHA TÉCNICA :</strong> <br> <?php echo $result_id[0]['OBSERVACOES'] ?></p>
 
                             </div>
                         </div>

@@ -1,5 +1,8 @@
+<?php
+require('../lib/login/verificaLogin.php');
+?>
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -17,7 +20,7 @@
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
             <span class="navbar-text">
-                <button type="button" class="btn btn-outline-light position-relative border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-outline-light position-relative border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
@@ -42,22 +45,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./sobrenos/">Sobre nós</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="./gerente/gerente.php">Painel Gerente</a>
-                    </li> -->
                 </ul>
                 <span class="navbar-text">
-                    <a href="http://youtube.com">
+                    <a href="../lib/login/logout.php">
                         <button type="button" class="btn btn-light position-relative border-0">
-                            ADMINISTRADOR
+                            <?php echo $_SESSION['razao'] ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                             </svg>
-
-                            <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                2
-                            </span> -->
                         </button></a>
                 </span>
             </div>
@@ -99,7 +95,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,24 +108,35 @@
                 <div class="modal-footer">
                     <p><strong>TOTAL DO PEDIDO R$ 00,00</strong> </p>
                     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-                    <button type="button" class="btn">FINALIZAR</button>
+                    <!-- <form action="./finalizacao.php" method="post">
+                        <button type="submit" class="btn">FINALIZAR</button>
+                    </form> -->
+                    <a class="btn" href="./finalizacao.php" role="button">FINALIZAR</a>
                 </div>
             </div>
         </div>
     </div>
 
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/js/pagina-inicial.js"></script>
-    <script>
-Swal.fire({
-//   position: 'top-end',
-  icon: 'success',
-  title: 'Bem vindo Chico Alicate',
-  showConfirmButton: false,
-  timer: 1500
-})
-    </script>
+
+
+    <?php
+    if (isset($_SESSION['login_validado'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Seja Bem vindo!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['login_validado']);
+    ?>
 </body>
 
 </html>

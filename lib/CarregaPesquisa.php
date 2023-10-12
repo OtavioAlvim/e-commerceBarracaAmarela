@@ -15,7 +15,7 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     <h1>NENHUM RESULTADO ENCONTRADO PARA: <?php echo strtoupper($descricao) ?></h1>
 <?php
         } else { ?>
-    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-4 align-items-start g-2">
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-5 align-items-start g-2">
         <?php
 
             foreach ($result as $result) { ?>

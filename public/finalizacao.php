@@ -1,3 +1,6 @@
+<?php
+require('../lib/login/verificaLogin.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -23,27 +26,24 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Produtos</a>
+                        <a class="nav-link active" aria-current="page" href="./pagina_inicial.php">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Minha conta</a>
+                        <a class="nav-link" href="./pedidos/">Meus pedidos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre nós</a>
+                        <a class="nav-link" href="./sobrenos/">Sobre nós</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <button type="button" class="btn btn-light position-relative border-0">
-                        ADMINISTRADOR
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                        </svg>
-
-                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                2
-                            </span> -->
-                    </button>
+                    <a href="../lib/login/logout.php">
+                        <button type="button" class="btn btn-light position-relative border-0">
+                            <?php echo $_SESSION['razao'] ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg>
+                        </button></a>
                 </span>
             </div>
         </div>
@@ -59,27 +59,8 @@
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="col-1">ID</th>
-                                    <th scope="col" class="col-6">DESCRICAO</th>
-                                    <th scope="col" class="col-1">QTD</th>
-                                    <th scope="col" class="col-2">UNIT</th>
-                                    <th scope="col" class="col-2">TOTAL</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>PASOKAR 200 GR</td>
-                                    <td>1</td>
-                                    <td>R$ 10,00</td>
-                                    <td>R$ 10,00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="accordion-body" id="itens">
+                        <!-- aqui vem os dados do banco de dados -->
                     </div>
                 </div>
             </div>
@@ -91,35 +72,8 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <form class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Endereço</label>
-                                <input type="text" class="form-control" id="inputEmail4">
-                            </div>
-                            <div class="col-md-5">
-                                <label for="inputPassword4" class="form-label">Bairro</label>
-                                <input type="text" class="form-control" id="inputPassword4">
-                            </div>
-                            <div class="col-md-1">
-                                <label for="inputPassword4" class="form-label">Numero</label>
-                                <input type="text" class="form-control" id="inputPassword4">
-                            </div>
-                            <div class="col-8">
-                                <label for="inputAddress" class="form-label">Cidade</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="CHICO ALICATE HOUSE">
-                            </div>
-                            <div class="col-4">
-                                <label for="inputAddress2" class="form-label">CEP</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="37550-030">
-                            </div>
-                            <div class="col-md-8">
-                                <label for="inputCity" class="form-label">OBSERVAÇÂO</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputCity" class="form-label">Telefone</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
+                        <form class="row g-3" id="entrega">
+                            <!-- aqui vem os dados do banco de dados -->
                         </form>
                     </div>
                 </div>
@@ -137,10 +91,7 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <select class="form-select" id="floatingSelectGrid">
-                                        <option selected>DINHEIRO</option>
-                                        <option value="1">BOLETO</option>
-                                        <option value="2">CHEQUE</option>
-                                        <option value="3">PIX</option>
+                                        <!-- vsalor vira do banco de dados -->
                                     </select>
                                     <label for="floatingSelectGrid">Forma de Pagamento</label>
                                 </div>
@@ -148,7 +99,7 @@
 
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="mdo@example.com">
+                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="2" disabled>
                                     <label for="floatingInputGrid">Valor total</label>
                                 </div>
                             </div>
@@ -204,6 +155,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/finalizacao.js"></script>
 </body>
 
 </html>
