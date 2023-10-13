@@ -1,8 +1,8 @@
 <?php
 require_once '../conexao.php';
 
-
-$sql = "SELECT c.ENDERCLI,c.BAIRROCLI,c.NUMERO,c.CIDADECLI,c.CEPCLI,c.FONECLI,c.OBSERVACAO FROM clientes c WHERE c.CODIGOCLI = 689";
+$userid = $_GET['userid'];
+$sql = "SELECT c.ENDERCLI,c.BAIRROCLI,c.NUMERO,c.CIDADECLI,c.CEPCLI,c.FONECLI,c.OBSERVACAO FROM clientes c WHERE c.CODIGOCLI = {$userid}";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);

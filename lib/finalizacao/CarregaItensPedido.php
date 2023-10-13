@@ -1,8 +1,8 @@
 <?php
 require_once '../conexao.php';
 
-
-$sql = "SELECT ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE";
+$userid = $_GET['userid'];
+$sql = "SELECT ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE ={$userid}";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);

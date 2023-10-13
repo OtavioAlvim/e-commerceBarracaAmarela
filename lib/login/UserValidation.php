@@ -1,27 +1,45 @@
 <?php
 require_once '../conexao.php';
+session_start();
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'):
-    session_start();
-    $username = $_POST['user'];
-    $password = $_POST['pass'];
-    $sql = "SELECT * FROM clientes c WHERE  c.SITE ='{$username}' AND c.SENHA_LIBERACAO_VENDA ={$password}";
+if (empty($_POST['user']) || empty($_POST['pass'])) {
+    $_SESSION['erro'] == true;
+    // header("location: ../../index.php");
+}
+$username = $_POST['user'];
+$password = $_POST['pass'];
+
+
+
+$sql = "SELECT * FROM clientes c JOIN perfilclientes p ON c.ID_PERFIL = p.ID_PERFIL WHERE  c.SITE ='{$username}' AND c.SENHA_LIBERACAO_VENDA ={$password}";
+$sql = $conexao->prepare($sql);
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+foreach ($resultado as $resultado) {
+    // print_r($resultado);
+}
+if (empty($resultado)) {
+    $_SESSION['error'] = true;
+    header('location: ../../index.php');
+} else {
+
+    $sql = "SELECT i.TIPOPEDIDODEFAULT,i.TIPOPLANOPGDEFAULT,i.ID_PLANOCONTAPEDIDO,i.ID_BANCOPEDIDO,i.DEFAULTRETIRADOPOR FROM indices i";
     $sql = $conexao->prepare($sql);
     $sql->execute();
-    $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-    // caso a consulta do banco de dados retorne vazio
-    if(empty($result)):
-        header('location: ../../index.php');
-        exit();
-    endif;
-    session_start();
-    $_SESSION['username'] = "chico alicate";
-    $_SESSION['razao'] = $result[0]['RAZAO'];
+    $indices = $sql->fetchAll(PDO::FETCH_ASSOC);
+    // print_r($indices);
+    $_SESSION['ID_EMPRESA'] = 1;
+    $_SESSION['TIPOPEDIDODEFAULT'] = $indices[0]['TIPOPEDIDODEFAULT'];
+    $_SESSION['VENDEDORPADRAO'] =  10;
+    $_SESSION['TIPOPLANOPGDEFAULT'] =  $indices[0]['TIPOPLANOPGDEFAULT'];
+    $_SESSION['ID_PLANOCONTAPEDIDO'] =  $indices[0]['ID_PLANOCONTAPEDIDO'];
+    $_SESSION['ID_BANCOPEDIDO'] =  $indices[0]['ID_BANCOPEDIDO'];
+
+
+    $_SESSION['username'] = $resultado['RAZAO'];
+    $_SESSION['userid'] = $resultado['CODIGOCLI'];
+    $_SESSION['idperfil'] = $resultado['ID_PERFIL'];
+    $_SESSION['OBSERVACAO'] = $resultado['OBSERVACAO'];
     $_SESSION['login_validado'] = true;
-    // caso a consulta com o banco de dados retorne algo
-    header('location: ../../public/pagina_inicial.php');
-    
-else:
-    header('location: ../../index.php');
-endif;
-?>
+    header("location: ../../public/pagina_inicial.php");
+};

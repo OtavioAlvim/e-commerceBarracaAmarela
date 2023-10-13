@@ -26,8 +26,8 @@ require('../lib/login/verificaLogin.php');
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
 
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        2
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="qtdItensCarrinho">
+                        
                     </span>
                 </button>
             </span>
@@ -49,7 +49,7 @@ require('../lib/login/verificaLogin.php');
                 <span class="navbar-text">
                     <a href="../lib/login/logout.php">
                         <button type="button" class="btn btn-light position-relative border-0">
-                            <?php echo $_SESSION['razao'] ?>
+                            <?php echo $_SESSION['username'] ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
@@ -84,7 +84,9 @@ require('../lib/login/verificaLogin.php');
                 </div>
             </div>
         </div>
-
+        <input type="hidden" name="idperfil" value="<?php echo $_SESSION['idperfil'] ?>" id="idperfil">
+        <input type="hidden" name="nome_perfil" value="<?php echo $_SESSION['OBSERVACAO'] ?>" id="nome_perfil">
+        
         <div class="container" id="conteudo">
 
 
@@ -102,16 +104,16 @@ require('../lib/login/verificaLogin.php');
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">CARRINHO</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <input type="hidden" name="usuario" value="<?php echo $_SESSION['userid'] ?>" id="userid">
                 <div class="modal-body" id="itens">
+                    
 
                 </div>
-                <div class="modal-footer">
-                    <p><strong>TOTAL DO PEDIDO R$ 00,00</strong> </p>
+                <div class="modal-footer" id="totCarrinho">
+                    <!-- total vira do banco de dados -->
+                    <!-- <p>total vira do banco de dados</p>
                     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-                    <!-- <form action="./finalizacao.php" method="post">
-                        <button type="submit" class="btn">FINALIZAR</button>
-                    </form> -->
-                    <a class="btn" href="./finalizacao.php" role="button">FINALIZAR</a>
+                    <a class="btn" href="./finalizacao.php" role="button">FINALIZAR</a> -->
                 </div>
             </div>
         </div>

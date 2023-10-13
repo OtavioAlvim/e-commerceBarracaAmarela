@@ -1,7 +1,7 @@
 <?php
 require_once './conexao.php';
 
-
+$idCliente = $_GET['userid'];
 $sql = "SELECT 
 p.VENDA,
 p.EMISSAO,
@@ -15,7 +15,8 @@ case
 	when (p.SITUACAO = 'S' AND p.APROVADO = 'S' AND p.`STATUS` = 3) then 'FATURADO' 
 	when p.CANCELADO = 'S' then 'CANCELADO' 
 END AS resultado
-FROM prevenda p";
+FROM prevenda p
+WHERE p.CODIGOCLI = {$idCliente}";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);

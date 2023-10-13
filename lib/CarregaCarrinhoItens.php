@@ -1,9 +1,10 @@
 <?php
 require_once './conexao.php';
 
-
-$sql = "SELECT ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE";
+$userid = $_GET['userid'];
+$sql = "SELECT ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE =:idcliente";
 $sql = $conexao->prepare($sql);
+$sql->bindValue(':idcliente',$userid);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,4 +41,3 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
         <?php } ?>
     </tbody>
 </table>
-<!-- <h1><?php print_r($results['0']['DESCRICAO']) ?></h1> -->
