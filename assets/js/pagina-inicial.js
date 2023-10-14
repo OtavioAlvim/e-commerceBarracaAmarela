@@ -104,7 +104,7 @@ setInterval(function () {
         }
     });
 
-}, 500);
+}, 750);
 
 
 

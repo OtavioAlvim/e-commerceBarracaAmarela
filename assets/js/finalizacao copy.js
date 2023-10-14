@@ -62,9 +62,8 @@ $("#salvarDados").on('click', function () {
         success: function (response) {
             // Esconder a div de carregamento quando a requisição for bem-sucedida
             $("#loadingDiv").hide();
-            
-            // Redirecionar para a página "pagina_inicial.php"
-            window.location.href = "./pagina_inicial.php";
+                window.location.href = "./pagina_inicial.php";
+                
         },
         error: function (xhr, status, error) {
             // Esconder a div de carregamento em caso de erro

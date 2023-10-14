@@ -1,37 +1,65 @@
 <?php
+session_start();
+//20230321921808
 require_once '../conexao.php';
-$id_cliente = 689;
+// variaveis recuperadas via post
+// $userid = $_POST['userid'];
+// $id_empresa = $_POST['id_empresa'];
+// $tipopedido = $_POST['tipopedido'];
+// $vendedor = $_POST['vendedor'];
+// $planopgto = $_POST['planopgto'];
+// $planoconta = $_POST['planoconta'];
+// $id_banco = $_POST['id_banco'];
+$userid = 689;
+$id_empresa = 1;
+$tipopedido = 10;
+$vendedor = 1;
+$planopgto = 1;
+$planoconta = 1;
+$id_banco = 1;
+$id_pedido_cliente = 1;
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";
 $sql2 = $conexao->prepare($sql2);
 $sql2->execute();
 $prevenda_id = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
-$id_proximo_pedido = $prevenda_id[0]['VALOR'] + 1;
+$id_venda = $prevenda_id[0]['VALOR'] + 1;
 
 // recupera os dados do cliente
 $sql3 = "SELECT * FROM clientes c WHERE c.CODIGOCLI =:idcliente ";
 $sql3 = $conexao->prepare($sql3);
-$sql3->bindValue(':idcliente',$id_cliente);
+$sql3->bindValue(':idcliente',$userid);
 $sql3->execute();
 $cliente = $sql3->fetchAll(PDO::FETCH_ASSOC);
 // print_r($cliente[0]);
 
 // apos os dados recuperados, hora de percistir os dados do carrinho para setar como finalizado e colocar o valor final dos itens
 $sql5 = "
-SELECT SUM(ic.TOTAL) FROM carrinho_ecommerce c 
+SELECT SUM(ic.TOTAL) as total FROM carrinho_ecommerce c 
 JOIN itens_carrinho_ecommerce ic
 ON c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE =:idcliente AND c.`STATUS` = 'A' AND c.ID =:id_pedido_cliente";
 $sql5 = $conexao->prepare($sql5);
 $sql5->bindValue(':id_pedido_cliente',$id_pedido_cliente);
-$sql5->bindValue(':idcliente',$idcliente);
+$sql5->bindValue(':idcliente',$userid);
 $sql5->execute();
 $total_produtos_carrinho = $sql5->fetchAll(PDO::FETCH_ASSOC);
+// print_r($total_produtos_carrinho[0]['total']);
 
 // insere o valor final do carrinho na tabela
+$sql6 = "UPDATE carrinho_ecommerce c SET c.TOTAL = :total WHERE c.ID =:id_pedido";
+$sql6 = $conexao->prepare($sql6);
+$sql6->bindValue(':total',$total_produtos_carrinho[0]['total']);
+$sql6->bindValue(':id_pedido',$id_pedido_cliente);
+$sql6->execute();
 
+$sql7 = "SELECT * FROM carrinho_ecommerce c WHERE c.ID =:id";
+$sql7 = $conexao->prepare($sql7);
+$sql7->bindValue(':id',$id_pedido_cliente);
+$sql7->execute();
+$carrinho = $sql7->fetchAll(PDO::FETCH_ASSOC);
+// print_r($carrinho[0]['TOTAL']);
 
-$sql4 = "SELECT * FROM carrinho_ecommerce" ;
 
 
 
@@ -218,33 +246,33 @@ $sql4 = "INSERT INTO `prevenda` (
  `VALORCONTRATO`, 
  `ID_CONFERENCIA`
  ) VALUES (
- 1, 
- 2, 
+ {$id_empresa}, 
+ {$id_venda}, 
  '', 
- 689, 
- 'INOVEH SOLUCOES AUTOMACAO COMERCIAL LTDA. - ME', 
- 'RUA JOAO BASILIO262', 
- 'CENTRO', 
- 'POUSO ALEGRE', 
- 'MG', 
- '37550000', 
- '3534212407', 
+ {$cliente[0]['CODIGOCLI']}, 
+ '{$cliente[0]['NOMECLI']}', 
+ '{$cliente[0]['ENDERCLI']}', 
+ '{$cliente[0]['BAIRROCLI']}', 
+ '{$cliente[0]['CIDADECLI']}', 
+ '{$cliente[0]['ESTADOCLI']}', 
+ '{$cliente[0]['CEPCLI']}', 
+ '{$cliente[0]['FONECLI']}', 
  0.00, 
- 10.00, 
- '20949563000138', 
- '0024740390035', 
+ '{$carrinho[0]['TOTAL']}', 
+ '{$cliente[0]['CPFCGC']}', 
+ '{$cliente[0]['IDENINSC']}', 
  'N', 
  NULL, 
  '', 
  'N', 
- '2023-10-13', 
+ current_date(), 
  NULL, 
  NULL, 
- 1, 
+ '{$vendedor}', 
  '1', 
- 1, 
- 1, 
- 10, 
+ '{$planopgto}', 
+ '{$carrinho[0]['FORMAPGTO']}', 
+ '{$tipopedido}', 
  'N', 
  'N', 
  0.00, 
@@ -288,7 +316,7 @@ $sql4 = "INSERT INTO `prevenda` (
  NULL, 
  NULL, 
  'N', 
- '2023-10-13', 
+ current_date(), 
  NULL, 
  NULL, 
  1000000, 
@@ -298,12 +326,12 @@ $sql4 = "INSERT INTO `prevenda` (
  NULL, 
  'S', 
  'N', 
- 'RUA JOAO BASILIO,262', 
- 'CENTRO', 
- 'POUSO ALEGRE', 
- 'MG', 
- '37550000', 
- '3534212407', 
+ '{$cliente[0]['ENDERCLI']}', 
+ '{$cliente[0]['BAIRROCLI']}', 
+ '{$cliente[0]['CIDADECLI']}', 
+ '{$cliente[0]['ESTADOCLI']}', 
+ '{$cliente[0]['CEPCLI']}', 
+ '{$cliente[0]['FONECLI']}', 
  NULL, 
  NULL, 
  NULL, 
@@ -314,7 +342,7 @@ $sql4 = "INSERT INTO `prevenda` (
  NULL, 
  NULL, 
  'O PROPRIO', 
- '17:12:57', 
+ current_time(), 
  NULL, 
  0.00, 
  0.00, 
@@ -330,7 +358,7 @@ $sql4 = "INSERT INTO `prevenda` (
  NULL, 
  'N', 
  NULL, 
- '2023-10-23', 
+ current_date(), 
  1, 
  0, 
  'N', 
@@ -358,7 +386,7 @@ $sql4 = "INSERT INTO `prevenda` (
  NULL, 
  NULL, 
  NULL, 
- 1, 
+ '{$planoconta}', 
  0.00, 
  0.00, 
  0.00,
@@ -399,9 +427,20 @@ $sql4 = "INSERT INTO `prevenda` (
  0.00, 
  0
  )";
-$sql5 =
+$sql4 = $conexao->prepare($sql4);
+$sql4->execute();
+
+
+// recupera dados dos itens do carrinho 
+$sql8 = "SELECT * FROM itens_carrinho_ecommerce c WHERE c.ID_CARRINHO_ECOMMERCE =:id_pedido";
+$sql8 = $conexao->prepare($sql8);
+$sql8->bindValue(':id_pedido',$id_pedido_cliente);
+$sql8->execute();
+$itens_carrinho = $sql8->fetchAll(PDO::FETCH_ASSOC);
+// print_r($itens_carrinho);
+foreach($itens_carrinho as $itens_carrinho){
+    $sql5 =
     "INSERT INTO `produtos_prevenda` (
-    `PRIMARIA`, 
     `EMPRESA`, 
     `VENDA`, 
     `CODIGO`, 
@@ -519,23 +558,22 @@ $sql5 =
     `ID_PRODUCAO`, 
     `ID_PLANOCONTA_ITEM`
     ) VALUES (
-    2, 
-    1, 
-    2, 
-    '07897511711098', 
-    'EMBALAGEM - G 742M/200UN - POTE REDONDO MILLENIUM 250', 
-    'UN', 
-    1.000, 
-    10.000, 
-    2, 
-    0.32, 
-    3, 
-    10.00, 
+    {$id_empresa}, 
+    {$id_venda}, 
+    '{$itens_carrinho['CODBARRA']}', 
+    '{$itens_carrinho['DESCRICAO']}', 
+    '{$itens_carrinho['UNIDADE']}', 
+    '{$itens_carrinho['QTDE']}', 
+    '{$itens_carrinho['UNITARIO']}', 
+    '{$itens_carrinho['ALIQUOTA']}', 
+    '{$itens_carrinho['CUSTO']}', 
+    '{$itens_carrinho['ID_PRODUTO']}', 
+    '{$itens_carrinho['TOTAL']}', 
     0.00, 
     0.00, 
     0.00, 
     0.00, 
-    10.000, 
+    '{$itens_carrinho['UNITARIO']}', 
     0.000, 
     0.000, 
     0.000, 
@@ -551,7 +589,7 @@ $sql5 =
     0.00, 
     0.00, 
     'N', 
-    10.00, 
+    '{$itens_carrinho['TOTAL']}', 
     'N', 
     0.323, 
     0.323, 
@@ -567,20 +605,20 @@ $sql5 =
      2, 
      0, 
      1, 
-     '2023-10-13', 
+     current_date(), 
      NULL,
      NULL, 
      NULL, 
      0.000, 
      2995.98, 
-     10.000, 
+     '{$itens_carrinho['UNITARIO']}', 
      0.000, 
      NULL, 
      'N', 
      0.00, 
      0.00, 
      'N', 
-     10.000, 
+     '{$itens_carrinho['UNITARIO']}', 
      NULL, 
      NULL, 
      NULL, 
@@ -616,7 +654,7 @@ $sql5 =
      0.00, 
      0.00, 
      0, 
-     2, 
+     '{$itens_carrinho['ALIQUOTA']}', 
      NULL, 
      0.0000, 
      0, 
@@ -638,3 +676,23 @@ $sql5 =
      NULL
      );
     ";
+    $sql5 = $conexao->prepare($sql5);
+    $sql5->execute();
+}
+
+$sql10 = "UPDATE sys_sequenciador s
+SET s.VALOR = :id_venda
+WHERE s.TABELA IN ('PREVENDA','PRODUTOS_PREVENDA')";
+$sql10 = $conexao->prepare($sql10);
+$sql10->bindValue(':id_venda',$id_venda);
+$sql10->execute();
+
+$sql11 = "UPDATE carrinho_ecommerce c SET
+c.`STATUS` = 'F' WHERE c.ID =:id_pedido_cliente ";
+$sql11 = $conexao->prepare($sql11);
+$sql11->bindValue(':id_pedido_cliente',$id_pedido_cliente);
+$sql11->execute();
+
+// Definir uma mensagem na resposta
+$_SESSION['pedido_finalizado'] = true;
+

@@ -139,6 +139,25 @@ require('../lib/login/verificaLogin.php');
     endif;
     unset($_SESSION['login_validado']);
     ?>
+
+
+
+<?php
+    if (isset($_SESSION['pedido_finalizado'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Pedido finalizado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['pedido_finalizado']);
+    ?>
 </body>
 
 </html>

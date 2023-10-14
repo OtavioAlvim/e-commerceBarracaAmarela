@@ -4,7 +4,7 @@ session_start();
 
 if (empty($_POST['user']) || empty($_POST['pass'])) {
     $_SESSION['erro'] == true;
-    // header("location: ../../index.php");
+    header("location: ../../index.php");
 }
 $username = $_POST['user'];
 $password = $_POST['pass'];

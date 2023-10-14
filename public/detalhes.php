@@ -15,7 +15,7 @@ $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -80,24 +80,44 @@ $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
                                 <h3 class="mt-2"><?php echo $result_id[0]['DESCRICAO'] ?></h3>
                                 <hr>
                                 <nav class="navbar fixed-bottom m-1">
-                                    <div class="row g-2">
-                                        <div class="col-md">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="quantidade" value="1">
-                                                <label for="floatingInputGrid">QUANTIDADE</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-floating">
-                                                <div class="d-grid gap-2">
-                                                    <button class="btn" type="button">ADICIONAR AO CARRINHO</button>
+                                    <form action="../lib/detalhes/InsereProduto.php" method="post">
+                                        <input type="hidden" name="CODITEM" value="<?php echo $result_id[0]['CODITEM'] ?>">
+                                        <input type="hidden" name="CODBARRA" value="<?php echo $result_id[0]['CODBARRA']  ?>">
+                                        <input type="hidden" name="CUSTO" value="<?php echo $result_id[0]['CUSTO'] ?>">
+                                        <input type="hidden" name="userid" value="<?php echo $_SESSION['userid']  ?>">
+                                        <input type="hidden" name="username" value="<?php echo $_SESSION['username']  ?>">
+                                        <input type="hidden" name="nome_tabela_preco" value="<?php echo $_SESSION['OBSERVACAO']  ?>">
+                                        <div class="row g-2">
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="quantidade" value="1" name="quantidade_inserida">
+                                                    <label for="floatingInputGrid">QUANTIDADE</label>
                                                 </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <div class="d-grid gap-2">
+                                                        <button class="btn" type="submit">ADICIONAR AO CARRINHO</button>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </nav>
-                                <H4>R$ <?php echo number_format($result_id[0]['UNITARIO'], 2, ',', ' ')  ?></H4>
+                                <H4>R$ <?php 
+                                $nome_preco = $_SESSION['OBSERVACAO'];
+                                // echo number_format($result_id[0]['UNITARIO'], 2, ',', ' ')  
+                                if($nome_preco == 'atacado'){
+                                    echo number_format($result_id[0]['UNITARIOATACADO'], 2, ',', ' ');
+                                }else if($nome_preco == 'revenda'){
+                                    echo number_format($result_id[0]['PRECOREVENDA'], 2, ',', ' ');
+                                }else if($nome_preco == 'promocao'){
+                                    echo number_format($result_id[0]['PROMOCAO'], 2, ',', ' ');
+                                }else{
+                                    echo number_format($result_id[0]['UNITARIO'], 2, ',', ' ');
+                                }
+                                ?></H4>
                                 <p><strong>FICHA TÉCNICA :</strong> <br> <?php echo $result_id[0]['OBSERVACOES'] ?></p>
 
                             </div>

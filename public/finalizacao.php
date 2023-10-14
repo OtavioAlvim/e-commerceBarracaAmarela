@@ -1,5 +1,6 @@
 <?php
 require('../lib/login/verificaLogin.php');
+// $_SESSION['login_validado'] = true;
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,6 +52,12 @@ require('../lib/login/verificaLogin.php');
     <br>
     <div class="container">
         <input type="hidden" name="usuario" value="<?php echo $_SESSION['userid'] ?>" id="userid">
+        <input type="hidden" name="ID_EMPRESA" value="<?php echo  $_SESSION['ID_EMPRESA'] ?>" id="id_empresa">
+        <input type="hidden" name="TIPOPEDIDODEFAULT" value="<?php echo  $_SESSION['TIPOPEDIDODEFAULT'] ?>" id="tipopedido">
+        <input type="hidden" name="VENDEDORPADRAO" value="<?php echo  $_SESSION['VENDEDORPADRAO'] ?>" id="vendedor">
+        <input type="hidden" name="TIPOPLANOPGDEFAULT" value="<?php echo  $_SESSION['TIPOPLANOPGDEFAULT']  ?>" id="planopgto">
+        <input type="hidden" name="ID_PLANOCONTAPEDIDO" value="<?php echo  $_SESSION['ID_PLANOCONTAPEDIDO'] ?>" id="planoconta">
+        <input type="hidden" name="ID_BANCOPEDIDO" value="<?php echo  $_SESSION['ID_BANCOPEDIDO']  ?>" id="id_banco">
         <H3>Dados para finalização do pedido</H3>
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
