@@ -1,23 +1,26 @@
 <?php
 session_start();
-//20230321921808
+
 require_once '../conexao.php';
 // variaveis recuperadas via post
-// $userid = $_POST['userid'];
-// $id_empresa = $_POST['id_empresa'];
-// $tipopedido = $_POST['tipopedido'];
-// $vendedor = $_POST['vendedor'];
-// $planopgto = $_POST['planopgto'];
-// $planoconta = $_POST['planoconta'];
-// $id_banco = $_POST['id_banco'];
-$userid = 689;
-$id_empresa = 1;
-$tipopedido = 10;
-$vendedor = 1;
-$planopgto = 1;
-$planoconta = 1;
-$id_banco = 1;
-$id_pedido_cliente = 1;
+$userid = $_POST['userid'];
+$id_empresa = $_POST['id_empresa'];
+$tipopedido = $_POST['tipopedido'];
+$vendedor = $_POST['vendedor'];
+$planopgto = $_POST['planopgto'];
+$planoconta = $_POST['planoconta'];
+$id_banco = $_POST['id_banco'];
+$id_pedido_cliente = $_POST['id_pedido'];
+$observacao = $_POST['observacao'];
+// $userid = 689;
+// $id_empresa = 1;
+// $tipopedido = 10;
+// $vendedor = 1;
+// $planopgto = 1;
+// $planoconta = 1;
+// $id_banco = 1;
+// $id_pedido_cliente = 53;
+// $observacao = "teste";
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";
 $sql2 = $conexao->prepare($sql2);
@@ -266,7 +269,7 @@ $sql4 = "INSERT INTO `prevenda` (
  '', 
  'N', 
  current_date(), 
- NULL, 
+ '{$observacao}', 
  NULL, 
  '{$vendedor}', 
  '1', 
@@ -688,7 +691,7 @@ $sql10->bindValue(':id_venda',$id_venda);
 $sql10->execute();
 
 $sql11 = "UPDATE carrinho_ecommerce c SET
-c.`STATUS` = 'F' WHERE c.ID =:id_pedido_cliente ";
+c.`STATUS` = 'F' WHERE c.ID =:id_pedido_cliente";
 $sql11 = $conexao->prepare($sql11);
 $sql11->bindValue(':id_pedido_cliente',$id_pedido_cliente);
 $sql11->execute();

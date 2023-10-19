@@ -17,11 +17,27 @@ $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Barraca Amarela</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .input-group-text {
+            background-color: #EDAB3B;
+        }
+
+        .input-group-text:hover {
+            background-color: #d8982a;
+        }
+    </style>
 </head>
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">

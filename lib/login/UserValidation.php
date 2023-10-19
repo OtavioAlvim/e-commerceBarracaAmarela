@@ -30,7 +30,7 @@ if (empty($resultado)) {
     // print_r($indices);
     $_SESSION['ID_EMPRESA'] = 1;
     $_SESSION['TIPOPEDIDODEFAULT'] = $indices[0]['TIPOPEDIDODEFAULT'];
-    $_SESSION['VENDEDORPADRAO'] =  10;
+    $_SESSION['VENDEDORPADRAO'] =  1;
     $_SESSION['TIPOPLANOPGDEFAULT'] =  $indices[0]['TIPOPLANOPGDEFAULT'];
     $_SESSION['ID_PLANOCONTAPEDIDO'] =  $indices[0]['ID_PLANOCONTAPEDIDO'];
     $_SESSION['ID_BANCOPEDIDO'] =  $indices[0]['ID_BANCOPEDIDO'];

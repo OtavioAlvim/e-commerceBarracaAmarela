@@ -3,7 +3,6 @@
 $servername = "127.0.0.1";
 $username = "inoveh";
 $password = "AxR256396dd";
-// $dbname = "bancochicoalicate";
 $dbname = "bdsia";
 
 // Conexão com o banco de dados usando PDO

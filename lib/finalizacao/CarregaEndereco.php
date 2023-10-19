@@ -38,5 +38,5 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <div class="form-floating">
     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px"></textarea>
-    <label for="floatingTextarea2">CASO USE UM ENDEREÇO PERSONALIZADO PARA ESSA ENTREGA, INFORMAR ABAIXO</label>
+    <label for="floatingTextarea2">CASO SEU PEDIDO CONTENHA OBSERVAÇÃO</label>
 </div>

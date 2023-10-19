@@ -69,12 +69,13 @@ require('../../lib/login/verificaLogin.php');
     <br><br><br>
     <input type="hidden" name="userid" value="<?php echo $_SESSION['userid'] ?>" id="userid">
     <div class="container"  id="pedidos">
-
+        <p>DETALHES DO PEDIDO #55</p>
+        <hr>
     </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../assets/js/pedidos.js"></script>
+    <!-- <script src="../../assets/js/pedidos.js"></script> -->
 
 </body>
 

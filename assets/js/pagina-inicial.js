@@ -1,5 +1,6 @@
 $(document).ready(function () {
     // Inicialização da página
+    $("#loadingDiv").show();
     var nome_perfil = $("#nome_perfil").val()
     // console.log(nome_perfil)
     $.ajax({
@@ -7,6 +8,7 @@ $(document).ready(function () {
         method: 'GET',
         data: { nome_perfil: nome_perfil },
         success: function (data) {
+            $("#loadingDiv").hide();
             // Atualize o conteúdo da página com os dados iniciais
             $('#conteudo').html(data);
         }
@@ -25,7 +27,17 @@ $(document).ready(function () {
     $('#opcoes').change(function () {
         var selecionado = $(this).val();
         console.log(selecionado);
-        if (selecionado !== '9999999999') {
+        if (selecionado === '9999999999') {
+            $.ajax({
+                url: '../lib/CarregaProdutos.php',
+                method: 'GET',
+                data: { nome_perfil: nome_perfil },
+                success: function (data) {
+                    // Atualize o conteúdo da página com os dados iniciais
+                    $('#conteudo').html(data);
+                }
+            });
+        } else {
             $.ajax({
                 url: '../lib/CarregaProdutosFamilia.php',
                 method: 'GET',
@@ -85,7 +97,7 @@ setInterval(function () {
         success: function (data) {
             // Atualize o conteúdo da página com os dados iniciais
             $('#totCarrinho').html(data);
-            console.log(data)
+            // console.log(data)
         }
     });
 
@@ -104,7 +116,7 @@ setInterval(function () {
         }
     });
 
-}, 750);
+}, 500);
 
 
 

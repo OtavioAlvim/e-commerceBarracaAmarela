@@ -7,12 +7,21 @@ require('../lib/login/verificaLogin.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>PAGINA INICIAL</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body{
+        font-family: 'Roboto', sans-serif;
+        }
+    </style>
+
 </head>
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">
@@ -27,7 +36,7 @@ require('../lib/login/verificaLogin.php');
                     </svg>
 
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="qtdItensCarrinho">
-                        
+
                     </span>
                 </button>
             </span>
@@ -86,7 +95,7 @@ require('../lib/login/verificaLogin.php');
         </div>
         <input type="hidden" name="idperfil" value="<?php echo $_SESSION['idperfil'] ?>" id="idperfil">
         <input type="hidden" name="nome_perfil" value="<?php echo $_SESSION['OBSERVACAO'] ?>" id="nome_perfil">
-        
+
         <div class="container" id="conteudo">
 
 
@@ -94,6 +103,22 @@ require('../lib/login/verificaLogin.php');
     </div>
 
     <!-- End Example Code -->
+
+    <!-- div de carregamento -->
+    <div id="loadingDiv" class="text-center" style="display: none;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; z-index: 999;">
+            <img src="../assets/img/padrao_sistema/carregamento.gif" alt="Carregando..." style="width: 182px; height: 182px;">
+        </div>
+    </div>
+
+        <!-- div de carregamento -->
+        <!-- <div id="loadingDiv" class="text-center" style="display: none;">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; z-index: 999;">
+            <img src="../assets/img/padrao_sistema/carregamento3.gif" alt="Carregando..." style="width: 350px; height: 350px;">
+        </div>
+    </div> -->
+
+
 
 
     <!-- Modal -->
@@ -106,7 +131,7 @@ require('../lib/login/verificaLogin.php');
                 </div>
                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['userid'] ?>" id="userid">
                 <div class="modal-body" id="itens">
-                    
+
 
                 </div>
                 <div class="modal-footer" id="totCarrinho">
@@ -123,26 +148,26 @@ require('../lib/login/verificaLogin.php');
     <script src="../assets/js/pagina-inicial.js"></script>
 
 
-    <?php
-    if (isset($_SESSION['login_validado'])) :
-    ?>
+    <!-- <?php
+            if (isset($_SESSION['login_validado'])) :
+            ?>
         <script>
             Swal.fire({
                 //   position: 'top-end',
                 icon: 'success',
                 title: 'Seja Bem vindo!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1000
             })
         </script>
     <?php
-    endif;
-    unset($_SESSION['login_validado']);
-    ?>
+            endif;
+            unset($_SESSION['login_validado']);
+    ?> -->
 
 
 
-<?php
+    <?php
     if (isset($_SESSION['pedido_finalizado'])) :
     ?>
         <script>
@@ -151,12 +176,29 @@ require('../lib/login/verificaLogin.php');
                 icon: 'success',
                 title: 'Pedido finalizado com sucesso!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1000
             })
         </script>
     <?php
     endif;
     unset($_SESSION['pedido_finalizado']);
+    ?>
+
+    <?php
+    if (isset($_SESSION['produto_inserido'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Produto Inserido com sucesso!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['produto_inserido']);
     ?>
 </body>
 

@@ -26,10 +26,11 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <th scope="row"><?php echo $n = $n + 1 ?></th>
                 <td><?php echo $results['DESCRICAO'] ?></td>
-                <td><?php echo $results['QTDE'] ?></td>
-                <td><?php echo $results['TOTAL'] ?></td>
+                <td><?php echo number_format($results['QTDE'], 2, ',', ' ') ?></td>
+                <td><?php echo number_format($results['TOTAL'], 2, ',', ' ') ?></td>
+                
                 <td class="text-center">
-                    <form action="" method="post">
+                    <form action="../lib/carrinho/ExcluiProduto.php" method="post">
                         <input type="hidden" name="id_produto" value="<?php echo $results['id'] ?>">
                         <button type="submit" class="btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">

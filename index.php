@@ -69,7 +69,7 @@
                     </div>
                     <button type="submit" class="btn btn-block">Entrar</button>
                     <br>
-                    <!-- <P>Não tem cadastro? <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">clique aqui</a> </P> -->
+                    <P>Não tem cadastro? <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">clique aqui</a> </P>
                 </form>
             </div>
         </div>

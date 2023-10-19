@@ -11,8 +11,8 @@ if ($results[0]['total'] == '0') { ?>
     <p><strong>TOTAL DO PEDIDO R$ <?php echo number_format($results[0]['total'], 2, ',', ' '); ?></strong></p>
     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
 <?php } else { ?>
-    <p><strong>TOTAL DO PEDIDO R$ <?php echo number_format($results[0]['total'], 2, ',', ' '); ?></strong></p>
+    <p><strong>TOTAL R$ <?php echo number_format($results[0]['total'], 2, ',', ' '); ?></strong></p>
     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-    <a class="btn" href="./finalizacao.php" role="button">FINALIZAR</a>
+    <a class="btn" href="./finalizacao2.php" role="button">FINALIZAR</a>
 
 <?php } ?>
