@@ -111,13 +111,6 @@ require('../lib/login/verificaLogin.php');
         </div>
     </div>
 
-        <!-- div de carregamento -->
-        <!-- <div id="loadingDiv" class="text-center" style="display: none;">
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; z-index: 999;">
-            <img src="../assets/img/padrao_sistema/carregamento3.gif" alt="Carregando..." style="width: 350px; height: 350px;">
-        </div>
-    </div> -->
-
 
 
 
@@ -131,14 +124,11 @@ require('../lib/login/verificaLogin.php');
                 </div>
                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['userid'] ?>" id="userid">
                 <div class="modal-body" id="itens">
-
+                <!-- os dados deste campo vira do banco de dados -->
 
                 </div>
                 <div class="modal-footer" id="totCarrinho">
                     <!-- total vira do banco de dados -->
-                    <!-- <p>total vira do banco de dados</p>
-                    <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-                    <a class="btn" href="./finalizacao.php" role="button">FINALIZAR</a> -->
                 </div>
             </div>
         </div>
@@ -205,7 +195,6 @@ require('../lib/login/verificaLogin.php');
     ?>
         <script>
             Swal.fire({
-                //   position: 'top-end',
                 icon: 'error',
                 title: 'Quantidade minima não inserida',
                 showConfirmButton: false,

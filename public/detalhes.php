@@ -7,7 +7,6 @@ $sql = $conexao->prepare($sql);
 $sql->bindValue(':idproduto', $idproduto);
 $sql->execute();
 $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
-// print_r($result_id);
 
 ?>
 
@@ -46,7 +45,6 @@ $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     <nav class="navbar navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
             <span class="navbar-text">
                 <button type="button" class="btn btn-outline-light position-relative border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 
@@ -123,7 +121,6 @@ $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
                                 </nav>
                                 <H4>R$ <?php 
                                 $nome_preco = $_SESSION['OBSERVACAO'];
-                                // echo number_format($result_id[0]['UNITARIO'], 2, ',', ' ')  
                                 if($nome_preco == 'atacado'){
                                     echo number_format($result_id[0]['UNITARIOATACADO'], 2, ',', ' ');
                                 }else if($nome_preco == 'revenda'){

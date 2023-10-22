@@ -7,7 +7,7 @@ $sql = $conexao->prepare($sql);
 $sql->bindValue(':idcliente', $userid);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-// print_r($results);
+
 if (empty($results)) { ?>
     <!-- //  "não tem nada"; -->
 

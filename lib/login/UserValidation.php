@@ -16,7 +16,7 @@ $sql = $conexao->prepare($sql);
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 foreach ($resultado as $resultado) {
-    // print_r($resultado);
+
 }
 if (empty($resultado)) {
     $_SESSION['error'] = true;
@@ -27,7 +27,7 @@ if (empty($resultado)) {
     $sql = $conexao->prepare($sql);
     $sql->execute();
     $indices = $sql->fetchAll(PDO::FETCH_ASSOC);
-    // print_r($indices);
+
     $_SESSION['ID_EMPRESA'] = 1;
     $_SESSION['TIPOPEDIDODEFAULT'] = $indices[0]['TIPOPEDIDODEFAULT'];
     $_SESSION['VENDEDORPADRAO'] =  1;

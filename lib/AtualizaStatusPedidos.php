@@ -28,7 +28,6 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
             <th class="col" scope="col">PEDIDO</th>
             <th class="col" scope="col">DESCRIÇÃO</th>
             <th class="col" scope="col">STATUS</th>
-            <!-- <th class="col-2" scope="col">Operações</th> -->
         </tr>
     </thead>
     <tbody>

@@ -31,7 +31,6 @@ $sql = "SELECT * FROM prevenda p JOIN produtos_prevenda pr ON p.VENDA = pr.VENDA
 
 <body class="p-0 m-0 border-0 bd-example m-0 border-0">
 
-    <!-- Example Code -->
 
     <nav class="navbar navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
@@ -79,8 +78,6 @@ $sql = "SELECT * FROM prevenda p JOIN produtos_prevenda pr ON p.VENDA = pr.VENDA
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="../../assets/js/pedidos.js"></script> -->
-
 </body>
 
 </html>

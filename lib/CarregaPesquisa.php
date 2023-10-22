@@ -25,7 +25,6 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <img src="data:image/jpg;base64, <?php echo base64_encode($result['FOTO_PRODUTO1']) ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $result['DESCRICAO'] ?></h5>
-                            <!-- <p class="card-text"><?php echo $result['OBSERVACOES'] ?></p> -->
                             <p>R$ <?php echo number_format($result['UNITARIO'], 2, ',', ' ') ?></p>
                         </div>
                     </div>

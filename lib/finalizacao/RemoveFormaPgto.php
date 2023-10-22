@@ -4,8 +4,6 @@ require_once '../conexao.php';
 
 $id_pedido  = $_POST['id_pedido'];
 
-
-
 $sql0 = "SELECT * FROM formaspgto f WHERE f.ID =:id";
 $sql0 = $conexao->prepare($sql0);
 $sql0->bindValue(':id',$id_forma);

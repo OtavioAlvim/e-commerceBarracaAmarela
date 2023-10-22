@@ -6,7 +6,7 @@ $sql = "SELECT COALESCE(SUM(ic.TOTAL),0) AS total FROM carrinho_ecommerce c JOIN
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-// printf($results);
+
 if ($results[0]['total'] == '0') { ?>
     <p><strong>TOTAL DO PEDIDO R$ <?php echo number_format($results[0]['total'], 2, ',', ' '); ?></strong></p>
     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>

@@ -2,7 +2,6 @@
 require_once './conexao.php';
 $nome_preco = $_GET['nome_perfil'];
 ini_set('max_execution_time',0);
-// echo $nome_preco;
 $sql = "SELECT * FROM produtos_integracao";
 $sql = $conexao->prepare($sql);
 $sql->execute();

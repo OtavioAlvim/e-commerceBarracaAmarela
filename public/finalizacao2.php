@@ -23,7 +23,6 @@ $sql = "SELECT COALESCE(SUM(ic.TOTAL),0) AS total,c.NOME_FORMA,c.* FROM carrinho
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
-// print_r($formaPag);
 
 ?>
 
@@ -305,7 +304,6 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
     ?>
         <script>
             Swal.fire({
-                //   position: 'top-end',
                 icon: 'error',
                 title: 'Pedido sem itens',
                 showConfirmButton: false,

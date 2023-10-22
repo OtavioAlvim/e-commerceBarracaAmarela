@@ -54,7 +54,6 @@ if ($quantidade == 0 or $quantidade = '') {
         $preco_produto = $dados_produto[0]['UNITARIO'];
     }
     $total = ($quantidade * $preco_produto);
-    // echo $total;
     // com todos os dados ja pegos, agora só inserir no banco de dados
     $sql3 = "INSERT INTO `itens_carrinho_ecommerce` (`ID_CARRINHO_ECOMMERCE`, `CODBARRA`, `DESCRICAO`, `UNIDADE`, `QTDE`, `UNITARIO`, `TOTAL`, `ALIQUOTA`, `CUSTO`, `ID_PRODUTO`) VALUES (:id_pedido,:codbarra,:descricao,:unidade,:quantidade,:unitario,:total,:aliquota,:custo,:id_produto)";
     $sql3 = $conexao->prepare($sql3);

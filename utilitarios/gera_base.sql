@@ -1,3 +1,4 @@
+-- cria a tabela prevenda caso não exista
 CREATE TABLE IF NOT EXISTS `prevenda` (
 	`EMPRESA` INT(11) NOT NULL DEFAULT '0',
 	`VENDA` INT(11) NOT NULL DEFAULT '0',
@@ -219,6 +220,7 @@ ENGINE=InnoDB
 
 
 
+-- cria a tabela produtos_prevenda caso não exista
 
 CREATE TABLE IF NOT EXISTS `produtos_prevenda` (
 	`PRIMARIA` INT(11) NOT NULL AUTO_INCREMENT,
@@ -355,7 +357,7 @@ AUTO_INCREMENT=401
 ;
 
 
-
+-- cria a tabela perfil de cliente caso não exista
 CREATE TABLE `perfilclientes` (
 	`ID_PERFIL` INT(11) NOT NULL DEFAULT '0',
 	`ID_EMPRESA` INT(11) NOT NULL DEFAULT '0',
@@ -372,12 +374,19 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 ;
 
+-- caso a tabela perfil de clientes ja exista, ele vai inserir um campo observações na tabela
+ALTER TABLE `perfilclientes`
+	ADD COLUMN `OBSERVACAO` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci' AFTER `ACRESCIMOCUSTO`;
+	
+-- insere os dados na perfil de clientes
 INSERT INTO `perfilclientes` (`ID_PERFIL`, `ID_EMPRESA`, `DESCRICAO`, `DESCONTO`, `ACRESCIMO`, `ACRESCIMOCUSTO`, `OBSERVACAO`) VALUES (1, 1, 'ATACADO', 0.00, 0.00, 0.00, 'atacado');
 INSERT INTO `perfilclientes` (`ID_PERFIL`, `ID_EMPRESA`, `DESCRICAO`, `DESCONTO`, `ACRESCIMO`, `ACRESCIMOCUSTO`, `OBSERVACAO`) VALUES (2, 1, 'REVENDA', 0.00, 0.00, 0.00, 'revenda');
 INSERT INTO `perfilclientes` (`ID_PERFIL`, `ID_EMPRESA`, `DESCRICAO`, `DESCONTO`, `ACRESCIMO`, `ACRESCIMOCUSTO`, `OBSERVACAO`) VALUES (3, 1, 'CONSUMIDOR FINAL - (UNITARIO)', 0.00, 0.00, 0.00, 'unitario');
 INSERT INTO `perfilclientes` (`ID_PERFIL`, `ID_EMPRESA`, `DESCRICAO`, `DESCONTO`, `ACRESCIMO`, `ACRESCIMOCUSTO`, `OBSERVACAO`) VALUES (4, 1, 'OUTROS - (PROMOÇÃO)', 0.00, 0.00, 0.00, 'promocao');
 
 
+-- cria a tabela carrinho ecommerce 
+ 
 CREATE TABLE `carrinho_ecommerce` (
 	`ID` INT(11) NOT NULL AUTO_INCREMENT,
 	`ID_CLIENTE` INT(11) NULL DEFAULT NULL,
@@ -393,6 +402,7 @@ ENGINE=InnoDB
 AUTO_INCREMENT=15
 ;
 
+-- cria a tabela itens_carrinho_ecommerce
 
 CREATE TABLE `itens_carrinho_ecommerce` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -414,6 +424,7 @@ AUTO_INCREMENT=23
 ;
 
 
+-- coloca valores padrões na tabela indice pela qual o sistema usa na validação dos dados na entrada do sistema, sem esses dados, é necessario colocar dentro do arquivo config manualmente.
 UPDATE indices i 
 SET i.TIPOPEDIDODEFAULT = 10,
 i.TIPOPLANOPGDEFAULT = 1,
@@ -421,6 +432,7 @@ i.ID_PLANOCONTAPEDIDO = 1,
 i.ID_BANCOPEDIDO = 1,
 i.DEFAULTRETIRADOPOR = 'O PROPRIO';
 
+-- seta valores padroes no data inicial e final para deixar trabalhar com o terceiro valor como promoção
 
 UPDATE produto p 
 SET p.INICIOPROMOCAO = '2023-01-01',
@@ -428,9 +440,58 @@ p.VALIDADE_PROMOCAO = '2023-01-01'
 WHERE p.INICIOPROMOCAO IS NULL AND p.VALIDADE_PROMOCAO IS NULL;
 
 
-ALTER TABLE `perfilclientes`
-	ADD COLUMN `OBSERVACAO` VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci' AFTER `ACRESCIMOCUSTO`;
 
+-- altera os parametros do campo observações de blob para text para inserir na plataforma
 ALTER TABLE `produtos_ecommerce`
 	CHANGE COLUMN `OBSERVACOES` `OBSERVACOES` TEXT NULL COLLATE 'latin1_general_ci' AFTER `ENVIADO_SERVIDOR`;
 
+comando para criar a view dos produtos da integração com o sistema
+
+CREATE VIEW produtos_integracao AS
+SELECT
+p.CODITEM,
+p.CODBARRA,
+prod.DESCRICAO,
+p.ABREVIA,
+prod.OBSERVACOES,
+p.FOTO_PRODUTO1,
+p.GRUPO,
+g.NOMEGRUPO,
+p.CATEGORIA,
+c.DESCRICAO AS NOMECATEGORIA,
+p.FAMILIA, 
+f.DESCRICAO NOMEFAMILIA,
+p.UNIDADE,
+p.CUSTO,
+e.UNITARIO,
+case
+	when e.PROMOCAO = '0,0' then e.UNITARIO
+	ELSE e.PROMOCAO
+END AS PROMOCAO,
+-- e.PROMOCAO,
+case
+	when e.UNITARIOATACADO = '0,0' then e.UNITARIO
+	ELSE e.UNITARIOATACADO
+END AS UNITARIOATACADO,
+-- e.UNITARIOATACADO,
+case
+	when (e.PRECOREVENDA = '0,0' OR e.PRECOREVENDA = '' OR e.PRECOREVENDA IS NULL OR e.PRECOREVENDA = NULL) then e.UNITARIO
+	ELSE e.PRECOREVENDA
+END AS PRECOREVENDA,
+-- e.PRECOREVENDA,
+e.ALIQUOTASAIDA,
+p.CFOPVENDAECF
+FROM estoques e 
+JOIN produto p
+ON e.ID_PRODUTO = p.CODITEM
+JOIN categorias c 
+ON p.CATEGORIA = c.ID_CATEGORIA
+JOIN grupo g
+on p.GRUPO = g.CODGRUPO
+JOIN familias f 
+ON p.FAMILIA = f.CODIGO
+right JOIN produtos_ecommerce prod
+ON p.CODITEM = prod.ID_PRODUTO
+WHERE e.ID_EMPRESA = 1
+AND p.ATIVO = 'S'
+AND p.USOCONSUMO = 'N'

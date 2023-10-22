@@ -1,7 +1,7 @@
 <?php
 require_once '../conexao.php';
 require('../login/verificaLogin.php');
-print_r($_POST);
+
 if($_POST['id_pedido'] == 0){
     $_SESSION['pedido_sem_itens'] = true;
     header("location: ../../public/finalizacao2.php");

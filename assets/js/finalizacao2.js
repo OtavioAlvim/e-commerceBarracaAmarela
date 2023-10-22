@@ -20,7 +20,6 @@ $("#inserir_forma").on('click', function () {
     var id_pedido = $("#id_pedido").val()
     var id_forma = $("#forma_pagamento_inserido").val()
     var valor_pedido = $("#valor_pedido").val()
-    console.log(valor_pedido)
     if (id_forma === 'sem_valor' ||  valor_pedido === "R$: 0,00") {
         // colocar alert personalizado 
         alert('Por gentileza informe a forma de pagamento!')
@@ -66,7 +65,7 @@ $("#remover_forma").on('click', function () {
         },
         success: function (response) {
             // Esconder a div de carregamento quando a requisição for bem-sucedida
-            // $("#loadingDiv").hide();
+            $("#loadingDiv").hide();
             location.reload();
         },
         error: function (xhr, status, error) {
@@ -82,7 +81,7 @@ $("#remover_forma").on('click', function () {
 
 
 $("#salvarDados").on('click', function () {
-    // $("#loadingDiv").show();
+    $("#loadingDiv").show();
     var userid = $("#userid").val()
     var id_empresa = $("#id_empresa").val()
     var tipopedido = $("#tipopedido").val()
@@ -92,15 +91,6 @@ $("#salvarDados").on('click', function () {
     var id_banco = $("#id_banco").val()
     var id_pedido = $("#id_pedido").val()
     var observacao = $("#floatingTextarea2").val()
-    // console.log(userid)
-    // console.log(id_empresa)
-    // console.log(tipopedido)
-    // console.log(vendedor)
-    // console.log(planopgto)
-    // console.log(planoconta)
-    // console.log(id_banco)
-    // console.log(observacao)
-    // console.log(id_pedido)
 
     // preciso verificar essa chamada amanha de maneira que  antes de enviar a requisição para o sia ele verifique se a forma de pagamento ja esta preenchida
     $.ajax({

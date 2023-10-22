@@ -8,4 +8,4 @@ $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 echo $results[0]['total'];
 ?>
-<strong></strong>
+

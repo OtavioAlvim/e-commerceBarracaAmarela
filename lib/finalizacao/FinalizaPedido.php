@@ -19,7 +19,7 @@ $observacao = $_POST['observacao'];
 // $planopgto = 1;
 // $planoconta = 1;
 // $id_banco = 1;
-// $id_pedido_cliente = 22;
+// $id_pedido_cliente = 25;
 // $observacao = "teste";
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";
@@ -35,7 +35,7 @@ $sql3 = $conexao->prepare($sql3);
 $sql3->bindValue(':idcliente',$userid);
 $sql3->execute();
 $cliente = $sql3->fetchAll(PDO::FETCH_ASSOC);
-// print_r($cliente[0]);
+
 
 // apos os dados recuperados, hora de percistir os dados do carrinho para setar como finalizado e colocar o valor final dos itens
 $sql5 = "
@@ -47,7 +47,7 @@ $sql5->bindValue(':id_pedido_cliente',$id_pedido_cliente);
 $sql5->bindValue(':idcliente',$userid);
 $sql5->execute();
 $total_produtos_carrinho = $sql5->fetchAll(PDO::FETCH_ASSOC);
-// print_r($total_produtos_carrinho[0]['total']);
+
 
 // insere o valor final do carrinho na tabela
 $sql6 = "UPDATE carrinho_ecommerce c SET c.TOTAL = :total WHERE c.ID =:id_pedido";
@@ -61,7 +61,7 @@ $sql7 = $conexao->prepare($sql7);
 $sql7->bindValue(':id',$id_pedido_cliente);
 $sql7->execute();
 $carrinho = $sql7->fetchAll(PDO::FETCH_ASSOC);
-// print_r($carrinho[0]['TOTAL']);
+
 
 
 
@@ -322,7 +322,7 @@ $sql4 = "INSERT INTO `prevenda` (
  current_date(), 
  NULL, 
  NULL, 
- 1000000, 
+ 999999, 
  'N', 
  NULL, 
  NULL, 
@@ -407,7 +407,7 @@ $sql4 = "INSERT INTO `prevenda` (
  0.00, 
  'N', 
  'N', 
- 1000000, 
+ 999999, 
  0, 
  'N', 
  NULL, 
@@ -440,7 +440,7 @@ $sql8 = $conexao->prepare($sql8);
 $sql8->bindValue(':id_pedido',$id_pedido_cliente);
 $sql8->execute();
 $itens_carrinho = $sql8->fetchAll(PDO::FETCH_ASSOC);
-// print_r($itens_carrinho);
+
 foreach($itens_carrinho as $itens_carrinho){
     $sql5 =
     "INSERT INTO `produtos_prevenda` (

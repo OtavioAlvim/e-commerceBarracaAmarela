@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" href="./assets/img/padrao_sistema/favicon.ico" type="image/x-icon">
     <style>
-        /* body {
-            background-color: #EDAB3B;
-        } */
-
         body {
             background-image: url('./assets/img/padrao_sistema/2.png');
             background-repeat: no-repeat;
@@ -69,7 +65,7 @@
                     </div>
                     <button type="submit" class="btn btn-block">Entrar</button>
                     <br>
-                    <!-- <P>Não tem cadastro? <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">clique aqui</a> </P> -->
+
                 </form>
             </div>
         </div>
