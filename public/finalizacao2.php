@@ -1,6 +1,5 @@
 <?php
 require('../lib/login/verificaLogin.php');
-
 require('../lib/conexao.php');
 
 $userid = $_SESSION['userid'];
@@ -8,7 +7,6 @@ $sql = "SELECT c.NOME_FORMA,ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_e
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-
 
 
 $sql = "SELECT fc.ID_FORMAPGTO,fp.DESCRICAO FROM formaspgtocliente fc
@@ -42,6 +40,7 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Barraca Amarela</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         body {
@@ -54,6 +53,10 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
 
         .input-group-text:hover {
             background-color: #d8982a;
+        }
+
+        tr {
+            background-color: blue;
         }
     </style>
 </head>
@@ -106,18 +109,23 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         PRODUTOS
                     </button>
                 </h2>
 
                 <!-- para mostrar os produtos posso apenas colocar o show na classe : accordion-collapse collapse -->
-                <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body" id="itens">
-
-
-                        <table class="table table-hover text-center">
-                            <input type="text" name="id_pedido" id="id_pedido" value="<?php echo $results[0]['ID_CARRINHO_ECOMMERCE'] ?>">
+                        <?php
+                        if (empty($results)) { ?>
+                            <div class="d-flex justify-content-center align-items-center">
+                            <img src="../assets/img/padrao_sistema/carrinho.png" alt="Carregando...">
+                        </div>
+                        <p class="text-center">Nenhum produto encontrado clique <a href="./pagina_inicial.php"> aqui </a>Para iniciar um novo pedido</p>
+                        <?php } else { ?>
+                            <table class="table table-hover text-center">
+                            <input type="hidden" name="id_pedido" id="id_pedido" value="<?php echo $results[0]['ID_CARRINHO_ECOMMERCE'] ?>">
                             <thead>
                                 <tr>
                                     <th scope="col" class="col-1">ID</th>
@@ -138,17 +146,23 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
                                         <td><?php echo number_format($results['QTDE'], 2, ',', ' ') ?></td>
                                         <td><?php echo number_format($results['TOTAL'], 2, ',', ' ') ?></td>
                                         <td class="text-center">
-                                            <button type="button" class="btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                                </svg>
-                                            </button>
+                                            <form action="../lib/finalizacao/RemoveItem.php" method="post">
+                                                <input type="hidden" name="id_produto" value="<?php echo number_format($results['id']) ?>">
+                                                <button type="submit" class="btn btn-sm">
+                                                    EXCLUIR
+                                                </button>
+                                            </form>
+
 
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+                        <?php } ?>
+
+
+                        
                     </div>
                 </div>
             </div>
@@ -186,7 +200,7 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <input class="form-control" type="text" aria-label="default input example" value=" R$: <?php echo number_format($formaPag[0]['total'], 2, ',', ' ') ?>" disabled>
+                    <input class="form-control" type="text" aria-label="default input example" value="R$: <?php echo number_format($formaPag[0]['total'], 2, ',', ' ') ?>" id="valor_pedido" disabled>
                 </div>
                 <div class="col-md-1">
 
@@ -219,7 +233,7 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-md-2">
                     <div class="input-group">
                         <div class="input-group-text">Total</button></div>
-                        <input type="text" class="form-control" value=" R$: <?php echo number_format($formaPag[0]['total'], 2, ',', ' ')?>" disabled>
+                        <input type="text" class="form-control" value="R$: <?php echo number_format($formaPag[0]['total'], 2, ',', ' ') ?>"  id="valor_pedido" disabled>
                     </div>
                 </div>
             </div>
@@ -269,7 +283,14 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-footer">
                     <button type="button" class="btn" data-bs-dismiss="modal">SAIR</button>
                     <form action="../lib/finalizacao/CancelarPedido.php" method="post">
-                        <input type="hidden" name="id_pedido"  value="<?php echo $results['ID_CARRINHO_ECOMMERCE'] ?>">
+                        <input type="hidden" name="id_pedido" value="
+                        <?php 
+                        if(isset($results['ID_CARRINHO_ECOMMERCE'])){
+                            echo $results['ID_CARRINHO_ECOMMERCE'];
+                        }else{
+                            echo 0;
+                        }
+                        ?>">
                         <button type="submit" class="btn">CANCELAR PEDIDO</button>
                     </form>
 
@@ -279,6 +300,22 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="../assets/js/finalizacao2.js"></script>
 
+        <?php
+    if (isset($_SESSION['pedido_sem_itens'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'error',
+                title: 'Pedido sem itens',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['pedido_sem_itens']);
+    ?>
 
 </body>
 

@@ -1,5 +1,9 @@
 <?php
 require('../../lib/login/verificaLogin.php');
+require('./lib/conexao.php');
+$id_pedido = $_GET['id_pedido'];
+
+$sql = "SELECT * FROM prevenda p JOIN produtos_prevenda pr ON p.VENDA = pr.VENDA WHERE p.VENDA = {$id_pedido}";
 ?>
 <!doctype html>
 <html lang="pt-br">

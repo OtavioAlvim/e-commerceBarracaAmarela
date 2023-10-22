@@ -8,7 +8,7 @@ $sql = $conexao->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<div class="row row-cols-1 row-cols-md-1 row-cols-lg-5 align-items-start g-2">
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 align-items-start g-2">
     <?php
  foreach ($result as $result) { ?>
         <a href="./detalhes.php?item=<?php echo $result['CODITEM'] ?>">

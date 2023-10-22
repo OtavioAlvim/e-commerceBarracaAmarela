@@ -37,7 +37,7 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
         ?>
             <tr>
                 <th scope="row"><?php echo $results['VENDA'] ?></th>
-                <td><a href="../pedidos/detalhes.php">PEDIDO EFETUADO DIA
+                <td><a href="../pedidos/detalhes.php?id_pedido=<?php echo $results['VENDA'] ?> ">PEDIDO EFETUADO DIA
                         <?php
                         $data = strtotime($results['EMISSAO']);
                         echo date("d/m/Y ", $data) ?></a>

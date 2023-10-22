@@ -7,8 +7,19 @@ $sql = $conexao->prepare($sql);
 $sql->bindValue(':idcliente', $userid);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-?>
-<table class="table table-hover">
+// print_r($results);
+if (empty($results)) { ?>
+    <!-- //  "não tem nada"; -->
+
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="../assets/img/padrao_sistema/carrinho.png" alt="Carregando...">
+    </div>
+    <p class="text-center">Nenhum produto encontrado no seu carrinho!</p>
+
+<?php
+} else {?>
+    <!-- "tem algo"; -->
+    <table class="table table-hover">
     <thead>
         <tr>
             <th scope="col" class="col-1">ID</th>
@@ -28,7 +39,7 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $results['DESCRICAO'] ?></td>
                 <td><?php echo number_format($results['QTDE'], 2, ',', ' ') ?></td>
                 <td><?php echo number_format($results['TOTAL'], 2, ',', ' ') ?></td>
-                
+
                 <td class="text-center">
                     <form action="../lib/carrinho/ExcluiProduto.php" method="post">
                         <input type="hidden" name="id_produto" value="<?php echo $results['id'] ?>">
@@ -45,3 +56,6 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
         <?php } ?>
     </tbody>
 </table>
+<?php
+}
+?>

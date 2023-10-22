@@ -12,14 +12,14 @@ $planoconta = $_POST['planoconta'];
 $id_banco = $_POST['id_banco'];
 $id_pedido_cliente = $_POST['id_pedido'];
 $observacao = $_POST['observacao'];
-// $userid = 689;
+// $userid = 1;
 // $id_empresa = 1;
 // $tipopedido = 10;
 // $vendedor = 1;
 // $planopgto = 1;
 // $planoconta = 1;
 // $id_banco = 1;
-// $id_pedido_cliente = 53;
+// $id_pedido_cliente = 22;
 // $observacao = "teste";
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";

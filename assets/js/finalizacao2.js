@@ -20,7 +20,8 @@ $("#inserir_forma").on('click', function () {
     var id_pedido = $("#id_pedido").val()
     var id_forma = $("#forma_pagamento_inserido").val()
     var valor_pedido = $("#valor_pedido").val()
-    if (id_forma === 'sem_valor') {
+    console.log(valor_pedido)
+    if (id_forma === 'sem_valor' ||  valor_pedido === "R$: 0,00") {
         // colocar alert personalizado 
         alert('Por gentileza informe a forma de pagamento!')
     } else {

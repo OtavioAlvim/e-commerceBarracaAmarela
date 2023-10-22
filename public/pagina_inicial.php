@@ -148,25 +148,6 @@ require('../lib/login/verificaLogin.php');
     <script src="../assets/js/pagina-inicial.js"></script>
 
 
-    <!-- <?php
-            if (isset($_SESSION['login_validado'])) :
-            ?>
-        <script>
-            Swal.fire({
-                //   position: 'top-end',
-                icon: 'success',
-                title: 'Seja Bem vindo!',
-                showConfirmButton: false,
-                timer: 1000
-            })
-        </script>
-    <?php
-            endif;
-            unset($_SESSION['login_validado']);
-    ?> -->
-
-
-
     <?php
     if (isset($_SESSION['pedido_finalizado'])) :
     ?>
@@ -199,6 +180,41 @@ require('../lib/login/verificaLogin.php');
     <?php
     endif;
     unset($_SESSION['produto_inserido']);
+    ?>
+
+<?php
+    if (isset($_SESSION['pedido_cancelado'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Produto Inserido com sucesso!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['pedido_cancelado']);
+    ?>
+
+
+<?php
+    if (isset($_SESSION['produto_sem_item'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'error',
+                title: 'Quantidade minima não inserida',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['produto_sem_item']);
     ?>
 </body>
 
