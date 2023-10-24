@@ -52,7 +52,7 @@ require('../lib/login/verificaLogin.php');
                         <a class="nav-link" href="../public/pedidos/index.php">Meus pedidos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./sobrenos/">Sobre nós</a>
+                        <a class="nav-link" href="./dashboard/gerente.php">Dashboard</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
