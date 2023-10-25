@@ -44,7 +44,7 @@ $(document).ready(function () {
                 method: 'GET',
                 data: { opcao: selecionado },
                 success: function (data) {
-                    // Atualize o conteúdo da página com os dados da opção selecionada
+                    // Atualize o conteúdo da página com os  dados da opção selecionada
                     $('#conteudo').html(data);
                 }
             });

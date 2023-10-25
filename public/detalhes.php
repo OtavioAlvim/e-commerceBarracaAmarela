@@ -56,11 +56,11 @@ $image_caminho
     </style>
 </head>
 
-<body class="p-0 m-0 border-0 bd-example m-0 border-0">
+<body class="border-0 bd-example m-0 border-0">
 
     <!-- Example Code -->
 
-    <nav class="navbar navbar-expand-lg" id="detalhes">
+    <nav class="navbar fixed-top navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
             <span class="navbar-text">
                 <button type="button" class="btn btn-outline-light position-relative border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">

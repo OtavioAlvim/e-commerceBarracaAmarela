@@ -61,11 +61,11 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 
-<body class="p-0 m-0 border-0 bd-example m-0 border-0">
+<body >
 
     <!-- Example Code -->
 
-    <nav class="navbar navbar-expand-lg" id="detalhes">
+    <nav class="navbar fixed-top navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -78,44 +78,48 @@ require('../../lib/login/verificaLogin.php');
             </div>
         </div>
     </nav>
-    <br><br><br><br><br>
+    <br><br><br>
     <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <form class="row g-3" id="consulta_produto">
-                        <div class="col">
-                            <label for="inputPassword2" class="visually-hidden">Password</label>
-                            <input type="text" class="form-control" id="descricao_prod" placeholder="Pesquise o Produto" autofocus>
-                        </div>
-                    </form>
-                </div><br>
-            </div>
-
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col-sm-4">
-                    <br>
-                    <select class="form-select form-select-sm" aria-label="Small select example" id="opcoes">
-                    </select>
-                </div>
-            </div>
-        </div>
-        <input type="hidden" name="idperfil" value="<?php echo $_SESSION['idperfil'] ?>" id="idperfil">
-        <input type="hidden" name="nome_perfil" value="<?php echo $_SESSION['OBSERVACAO'] ?>" id="nome_perfil">
         <br>
-        <h4>Produtos cadastrados:</h4>
-        <div class="container-fluid" id="conteudo">
+        <h4>PRODUTO: 10554</h4>
 
-        </div>
-
+        <form class="row g-3">
+            <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">DESCRIÇÃO</label>
+                <input type="email" class="form-control" id="inputEmail4" value="CHICO ALICATE">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">IMAGEM DO PRODUTO</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+            <div class="col-md-3">
+                <label for="inputPassword4" class="form-label">PROMOÇÃO</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-md-3">
+                <label for="inputAddress" class="form-label">UNITARIO</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            <div class="col-md-3">
+                <label for="inputAddress2" class="form-label">ATACADO</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="col-md-3">
+                <label for="inputCity" class="form-label">REVENDA</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1" class="form-label">FICHA TÉCNICA DO PRODUTO</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn">INSERIR DADOS</button>
+            </div>
+        </form>
     </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../assets/js/dashboard.js"></script>
 
 </body>
 
