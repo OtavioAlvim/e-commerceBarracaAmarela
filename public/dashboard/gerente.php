@@ -16,11 +16,16 @@ require('../../lib/login/verificaLogin.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/pedidos.css">
     <style>
-        body{
-        font-family: 'Roboto', sans-serif;
+        body {
+            font-family: 'Roboto', sans-serif;
         }
-        a{
+
+        a {
             text-decoration: none;
+        }
+
+        tr {
+            background-color: red;
         }
     </style>
 </head>
@@ -53,21 +58,48 @@ require('../../lib/login/verificaLogin.php');
                 </ul>
                 <span class="navbar-text">
                     <span class="navbar-text">
-                    <a href="../../lib/login/logout.php">
-                        <button type="button" class="btn btn-light position-relative border-0">
-                            <?php echo $_SESSION['username'] ?>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                            </svg>
-                        </button></a>
+                        <a href="../../lib/login/logout.php">
+                            <button type="button" class="btn btn-light position-relative border-0">
+                                <?php echo $_SESSION['username'] ?>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                </svg>
+                            </button></a>
                     </span>
                 </span>
             </div>
         </div>
     </nav>
     <br><br><br>
-
+    <div class="container">
+    <h4>Operações</h4>
+        <div class="d-flex">
+            
+            <button type="button" class="btn btn-sm">IMPORTAR ALTERAÇÕES</button>
+            <!-- <button type="button" class="btn btn-primary"></button> -->
+        </div>
+        <br>
+        <h4>Produtos cadastrados:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-1 text-center" scope="col">ID</th>
+                    <th class="col-9" scope="col">DESCRICAO</th>
+                    <th class="col-1 text-center" scope="col">UNIDADE</th>
+                    <th class="col-1 text-center" scope="col">EDITAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="text-center" scope="row">1</th>
+                    <td>chico alicate</td>
+                    <td class="text-center">UN</td>
+                    <td class="text-center"><button type="button" class="btn btn-sm">EDITAR</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

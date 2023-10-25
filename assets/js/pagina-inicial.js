@@ -2,6 +2,7 @@ $(document).ready(function () {
     // Inicialização da página
     $("#loadingDiv").show();
     var nome_perfil = $("#nome_perfil").val()
+    var userid = $("#userid").val()
     // console.log(nome_perfil)
     $.ajax({
         url: '../lib/CarregaProdutos.php',
@@ -66,57 +67,80 @@ $(document).ready(function () {
         });
     });
 
+    // verifica se tem itens no carrinho, se sim, exibe eles
+    $.ajax({
+        url: '../lib/VerificaCarrinho.php',
+        method: 'GET',
+        data: {
+            userid: userid // Inclua o valor oculto nos dados da requisição
+        },
+        success: function (data) {
+            // Atualize o conteúdo da página com os dados iniciais
+            var resultado_carrinho = JSON.parse(data)
+
+            if (resultado_carrinho.status === 'tem_itens') {
+                // <!-- pedido ja contem itens -->
+                // carrega os item do carrinho
+                $.ajax({
+                    url: '../lib/CarregaCarrinhoItens.php',
+                    method: 'GET',
+                    data: {
+                        userid: userid // Inclua o valor oculto nos dados da requisição
+                    },
+                    success: function (data) {
+                        // Atualize o conteúdo da página com os dados iniciais
+                        $('#itens').html(data);
+
+                    }
+                });
+                // carrega o total do carrinho
+                $.ajax({
+                    url: '../lib/CarregaCarrinhoTotal.php',
+                    method: 'GET',
+                    data: {
+                        userid: userid // Inclua o valor oculto nos dados da requisição
+                    },
+                    success: function (data) {
+                        // Atualize o conteúdo da página com os dados iniciais
+                        $('#total_carrinho').html(data);
+
+                    }
+                });
+                // carrega quantia de itens carrinho
+                $.ajax({
+                    url: '../lib/CarregaCarrinhoQuantidade.php',
+                    method: 'GET',
+                    data: {
+                        userid: userid // Inclua o valor oculto nos dados da requisição
+                    },
+                    success: function (data) {
+                        // Atualize o conteúdo da página com os dados iniciais
+                        $('#qtdItensCarrinho').html(data);
+
+                    }
+                });
+            } else {
+                // <!-- pedido não contem itens -->
+                $.ajax({
+                    url: '../lib/CarregaCarrinhoVazio.php',
+                    method: 'GET',
+                    data: {
+                        userid: userid // Inclua o valor oculto nos dados da requisição
+                    },
+                    success: function (data) {
+                        // Atualize o conteúdo da página com os dados iniciais
+                        $('#itens').html(data);
+
+                        $('#botao_finalizar').html('');
+
+                    }
+                });
+            }
+        }
+    });
 
 
 });
-
-setInterval(function () {
-    // carrega os itens do carrinho
-    var userid = $("#userid").val()
-    console.log(userid)
-    $.ajax({
-        url: '../lib/CarregaCarrinhoItens.php',
-        method: 'GET',
-        data: {
-            userid: userid // Inclua o valor oculto nos dados da requisição
-        },
-        success: function (data) {
-            // Atualize o conteúdo da página com os dados iniciais
-            $('#itens').html(data);
-            // console.log(data)
-        }
-    });
-
-    // carrega o total do carrinho
-    $.ajax({
-        url: '../lib/CarregaCarrinhoTotal.php',
-        method: 'GET',
-        data: {
-            userid: userid // Inclua o valor oculto nos dados da requisição
-        },
-        success: function (data) {
-            // Atualize o conteúdo da página com os dados iniciais
-            $('#totCarrinho').html(data);
-            // console.log(data)
-        }
-    });
-
-
-    // carrega a quantidade de itens presente no carrinho
-    $.ajax({
-        url: '../lib/CarregaCarrinhoQuantidade.php',
-        method: 'GET',
-        data: {
-            userid: userid // Inclua o valor oculto nos dados da requisição
-        },
-        success: function (data) {
-            // Atualize o conteúdo da página com os dados iniciais
-            $('#qtdItensCarrinho').html(data);
-            // console.log(data)
-        }
-    });
-
-}, 1000);
 
 
 

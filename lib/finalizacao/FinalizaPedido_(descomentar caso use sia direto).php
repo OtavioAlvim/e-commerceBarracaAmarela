@@ -2,7 +2,6 @@
 session_start();
 
 require_once '../conexao.php';
-$pdo2 = new PDO('sqlite:../db/carrinho.db');
 // variaveis recuperadas via post
 $userid = $_POST['userid'];
 $id_empresa = $_POST['id_empresa'];
@@ -20,7 +19,7 @@ $observacao = $_POST['observacao'];
 // $planopgto = 1;
 // $planoconta = 1;
 // $id_banco = 1;
-// $id_pedido_cliente = 1;
+// $id_pedido_cliente = 25;
 // $observacao = "teste";
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";
@@ -39,23 +38,26 @@ $cliente = $sql3->fetchAll(PDO::FETCH_ASSOC);
 
 
 // apos os dados recuperados, hora de percistir os dados do carrinho para setar como finalizado e colocar o valor final dos itens
-$sql5 = "select sum(total) as total from itens_carrinho_ecommerce where ID_CARRINHO_ECOMMERCE = :id_pedido_cliente";
-$sql5 = $pdo2->prepare($sql5);
+$sql5 = "
+SELECT SUM(ic.TOTAL) as total FROM carrinho_ecommerce c 
+JOIN itens_carrinho_ecommerce ic
+ON c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE =:idcliente AND c.`STATUS` = 'A' AND c.ID =:id_pedido_cliente";
+$sql5 = $conexao->prepare($sql5);
 $sql5->bindValue(':id_pedido_cliente',$id_pedido_cliente);
-
+$sql5->bindValue(':idcliente',$userid);
 $sql5->execute();
 $total_produtos_carrinho = $sql5->fetchAll(PDO::FETCH_ASSOC);
 
 
 // insere o valor final do carrinho na tabela
-$sql6 = "UPDATE carrinho_ecommerce SET TOTAL = :total WHERE ID =:id_pedido";
-$sql6 = $pdo2->prepare($sql6);
+$sql6 = "UPDATE carrinho_ecommerce c SET c.TOTAL = :total WHERE c.ID =:id_pedido";
+$sql6 = $conexao->prepare($sql6);
 $sql6->bindValue(':total',$total_produtos_carrinho[0]['total']);
 $sql6->bindValue(':id_pedido',$id_pedido_cliente);
 $sql6->execute();
 
-$sql7 = "SELECT * FROM carrinho_ecommerce WHERE ID =:id";
-$sql7 = $pdo2->prepare($sql7);
+$sql7 = "SELECT * FROM carrinho_ecommerce c WHERE c.ID =:id";
+$sql7 = $conexao->prepare($sql7);
 $sql7->bindValue(':id',$id_pedido_cliente);
 $sql7->execute();
 $carrinho = $sql7->fetchAll(PDO::FETCH_ASSOC);
@@ -434,7 +436,7 @@ $sql4->execute();
 
 // recupera dados dos itens do carrinho 
 $sql8 = "SELECT * FROM itens_carrinho_ecommerce c WHERE c.ID_CARRINHO_ECOMMERCE =:id_pedido";
-$sql8 = $pdo2->prepare($sql8);
+$sql8 = $conexao->prepare($sql8);
 $sql8->bindValue(':id_pedido',$id_pedido_cliente);
 $sql8->execute();
 $itens_carrinho = $sql8->fetchAll(PDO::FETCH_ASSOC);
@@ -688,9 +690,9 @@ $sql10 = $conexao->prepare($sql10);
 $sql10->bindValue(':id_venda',$id_venda);
 $sql10->execute();
 
-$sql11 = "UPDATE carrinho_ecommerce SET
-`STATUS` = 'F' WHERE ID =:id_pedido_cliente";
-$sql11 = $pdo2->prepare($sql11);
+$sql11 = "UPDATE carrinho_ecommerce c SET
+c.`STATUS` = 'F' WHERE c.ID =:id_pedido_cliente";
+$sql11 = $conexao->prepare($sql11);
 $sql11->bindValue(':id_pedido_cliente',$id_pedido_cliente);
 $sql11->execute();
 

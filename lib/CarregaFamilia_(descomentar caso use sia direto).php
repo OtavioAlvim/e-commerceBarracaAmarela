@@ -1,9 +1,9 @@
 <?php
-$pdo2 = new PDO('sqlite:./db/produto.db');
+require_once './conexao.php';
 
 
 $sql = "SELECT p.FAMILIA,p.NOMEFAMILIA FROM produtos_integracao p GROUP BY p.NOMEFAMILIA";
-$sql = $pdo2->prepare($sql);
+$sql = $conexao->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 echo '<option value="9999999999" selected>SELECIONE UMA FAMILIA</option>';

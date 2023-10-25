@@ -1,30 +1,13 @@
 <?php
 require('../lib/login/verificaLogin.php');
-$pdo2 = new PDO('sqlite:../lib/db/produto.db');
-$pdo = new PDO('sqlite:../lib/db/bancoImagens.db');
+require('../lib/conexao.php');
 $idproduto = $_GET['item'];
 $sql = "SELECT * FROM produtos_integracao p WHERE p.CODITEM =:idproduto";
-$sql = $pdo2->prepare($sql);
+$sql = $conexao->prepare($sql);
 $sql->bindValue(':idproduto', $idproduto);
 $sql->execute();
 $result_id = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
-$sql = $pdo->prepare("select * from imagens where coditem = :id_produto");
-$sql->bindValue(':id_produto', $result_id[0]['CODITEM']);
-$sql->execute();
-$image = $sql->fetchAll(PDO::FETCH_ASSOC);
-foreach ($image as $image) {
-}
-if (empty($image['patch_image'])) :
-    // echo 'não tem imagem'; 
-    $image_caminho = '../assets/img/padrao_sistema/sem_imagem.png';
-
-else :
-    // echo 'tem imagem'; 
-    $image_caminho = '../assets/img/produto/' . $image['patch_image'];
-endif;
-$image_caminho
 ?>
 
 <!doctype html>
@@ -101,7 +84,7 @@ $image_caminho
         <div class="container">
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-2 align-items-start">
                 <div class="col">
-                    <img src="<?php echo $image_caminho ?>" class="img-thumbnail" alt="..." style="height: 60vh; width: 100%;">
+                    <img src="data:image/jpg;base64, <?php echo base64_encode($result_id[0]['FOTO_PRODUTO1']) ?>" class="img-thumbnail" alt="..." style="height: 60vh; width: 100%;">
                 </div>
                 <div class="col">
                     <div class="col">

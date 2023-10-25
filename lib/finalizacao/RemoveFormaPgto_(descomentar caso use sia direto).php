@@ -1,6 +1,6 @@
 <?php
 require_once '../conexao.php';
-$pdo2 = new PDO('sqlite:../db/carrinho.db');
+
 
 $id_pedido  = $_POST['id_pedido'];
 
@@ -10,8 +10,8 @@ $sql0->bindValue(':id',$id_forma);
 $sql0->execute();
 $nome_forma = $sql0->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "UPDATE carrinho_ecommerce SET FORMAPGTO = null,NOME_FORMA = null WHERE ID ={$id_pedido}";
-$sql = $pdo2->prepare($sql);
+$sql = "UPDATE carrinho_ecommerce c SET c.FORMAPGTO = null,c.NOME_FORMA = null WHERE c.ID ={$id_pedido}";
+$sql = $conexao->prepare($sql);
 
 $sql->execute();
 ?>

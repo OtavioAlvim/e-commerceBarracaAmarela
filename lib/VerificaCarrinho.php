@@ -7,5 +7,14 @@ $sql = $pdo2->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+if ($results[0]['total'] == '0') {
+    // <!-- não tem produtos no pedido -->
+    // echo 'não tem nada';
+    $dados = array('status' => 'nao_tem_itens');
+} else {
+    // <!-- pedido ja contem itens -->
+    // echo ' tem itens';
+    $dados = array('status' => 'tem_itens');
+} 
+echo json_encode($dados);
 ?>
-<p><strong>TOTAL DO PEDIDO R$ <?php echo number_format($results[0]['total'], 2, ',', ' '); ?></strong></p>

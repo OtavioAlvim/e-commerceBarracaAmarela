@@ -17,8 +17,8 @@ require('../lib/login/verificaLogin.php');
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body{
-        font-family: 'Roboto', sans-serif;
+        body {
+            font-family: 'Roboto', sans-serif;
         }
     </style>
 
@@ -124,11 +124,18 @@ require('../lib/login/verificaLogin.php');
                 </div>
                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['userid'] ?>" id="userid">
                 <div class="modal-body" id="itens">
-                <!-- os dados deste campo vira do banco de dados -->
+                    <!-- os dados deste campo vira do banco de dados -->
 
                 </div>
-                <div class="modal-footer" id="totCarrinho">
-                    <!-- total vira do banco de dados -->
+                <div class="modal-body" id="total_carrinho">
+                    
+                </div>
+                <div class="modal-footer" id="totCarrinhoo">
+                    <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
+                    <div id="botao_finalizar">
+                        <a class="btn" href="./finalizacao2.php" role="button">FINALIZAR</a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -172,7 +179,7 @@ require('../lib/login/verificaLogin.php');
     unset($_SESSION['produto_inserido']);
     ?>
 
-<?php
+    <?php
     if (isset($_SESSION['pedido_cancelado'])) :
     ?>
         <script>
@@ -181,7 +188,7 @@ require('../lib/login/verificaLogin.php');
                 icon: 'success',
                 title: 'Produto Inserido com sucesso!',
                 showConfirmButton: false,
-                timer: 1000
+                timer: 500
             })
         </script>
     <?php
@@ -190,7 +197,7 @@ require('../lib/login/verificaLogin.php');
     ?>
 
 
-<?php
+    <?php
     if (isset($_SESSION['produto_sem_item'])) :
     ?>
         <script>

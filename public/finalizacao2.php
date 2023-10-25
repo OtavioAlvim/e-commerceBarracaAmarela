@@ -1,10 +1,11 @@
 <?php
 require('../lib/login/verificaLogin.php');
 require('../lib/conexao.php');
+$pdo2 = new PDO('sqlite:../lib/db/carrinho.db');
 
 $userid = $_SESSION['userid'];
 $sql = "SELECT c.NOME_FORMA,ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE ={$userid} AND c.`STATUS` = 'A'";
-$sql = $conexao->prepare($sql);
+$sql = $pdo2->prepare($sql);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -20,7 +21,7 @@ $resultss = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
 $sql = "SELECT COALESCE(SUM(ic.TOTAL),0) AS total,c.NOME_FORMA,c.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE ={$userid} AND c.`STATUS` = 'A'";
-$sql = $conexao->prepare($sql);
+$sql = $pdo2->prepare($sql);
 $sql->execute();
 $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
 

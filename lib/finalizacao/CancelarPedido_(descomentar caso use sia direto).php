@@ -1,15 +1,14 @@
 <?php
-
 require('../login/verificaLogin.php');
-$pdo2 = new PDO('sqlite:../db/carrinho.db');
+require_once '../conexao.php';
 if($_POST['id_pedido'] == 0){
     $_SESSION['pedido_sem_itens'] = true;
     header("location: ../../public/finalizacao2.php");
 }else{
     $id_pedido = $_POST['id_pedido'];
-    $sql = "UPDATE carrinho_ecommerce  SET
-    `STATUS` = 'C' WHERE ID ={$id_pedido}";
-    $sql = $pdo2->prepare($sql);
+    $sql = "UPDATE carrinho_ecommerce c SET
+    c.`STATUS` = 'C' WHERE c.ID ={$id_pedido}";
+    $sql = $conexao->prepare($sql);
     
     $sql->execute();
     $_SESSION['pedido_cancelado'] = true;

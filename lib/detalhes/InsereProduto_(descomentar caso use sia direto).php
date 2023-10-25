@@ -1,7 +1,5 @@
 <?php
-// require_once '../pdo$pdo2.php';
-$pdo2 = new PDO('sqlite:../db/carrinho.db');
-$pdo = new PDO('sqlite:../db/produto.db');
+require_once '../conexao.php';
 session_start();
 
 $coditem = $_POST['CODITEM'];
@@ -20,20 +18,20 @@ if ($quantidade == 0 or $quantidade = '') {
     // verifica se ja tem algum pedido em aberto para aquele cliente, e se tiver, ele vai pegar o id para poder inserir nos produtos
     $quantidade = $_POST['quantidade_inserida'];
     $sql = "SELECT * FROM carrinho_ecommerce c WHERE c.`STATUS` = 'A' AND c.ID_CLIENTE =:idcliente";
-    $sql = $pdo2->prepare($sql);
+    $sql = $conexao->prepare($sql);
     $sql->bindValue(':idcliente', $idcliente);
     $sql->execute();
     $dados_pedido = $sql->fetchAll(PDO::FETCH_ASSOC);
     if (empty($dados_pedido)) {
         // vai inserir um registro de inicio de pedido no banco de dados
         $sql2 = "INSERT INTO `carrinho_ecommerce` (`ID_CLIENTE`, `NOME`) VALUES (:codcli,:nomecliente)";
-        $sql2 = $pdo2->prepare($sql2);
+        $sql2 = $conexao->prepare($sql2);
         $sql2->bindValue(':codcli', $idcliente);
         $sql2->bindValue(':nomecliente', $nome_usuario);
         $sql2->execute();
     }
     $sql = "SELECT * FROM carrinho_ecommerce c WHERE c.`STATUS` = 'A' AND c.ID_CLIENTE =:idcliente";
-    $sql = $pdo2->prepare($sql);
+    $sql = $conexao->prepare($sql);
     $sql->bindValue(':idcliente', $idcliente);
     $sql->execute();
     $id_pedido_carrinho = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +39,7 @@ if ($quantidade == 0 or $quantidade = '') {
 
     // busca os dados de unitario correspondente a tabela de preço
     $sql = "SELECT * FROM produtos_integracao p WHERE p.CODITEM =:idproduto";
-    $sql = $pdo->prepare($sql);
+    $sql = $conexao->prepare($sql);
     $sql->bindValue(':idproduto', $coditem);
     $sql->execute();
     $dados_produto = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -58,7 +56,7 @@ if ($quantidade == 0 or $quantidade = '') {
     $total = ($quantidade * $preco_produto);
     // com todos os dados ja pegos, agora só inserir no banco de dados
     $sql3 = "INSERT INTO `itens_carrinho_ecommerce` (`ID_CARRINHO_ECOMMERCE`, `CODBARRA`, `DESCRICAO`, `UNIDADE`, `QTDE`, `UNITARIO`, `TOTAL`, `ALIQUOTA`, `CUSTO`, `ID_PRODUTO`) VALUES (:id_pedido,:codbarra,:descricao,:unidade,:quantidade,:unitario,:total,:aliquota,:custo,:id_produto)";
-    $sql3 = $pdo2->prepare($sql3);
+    $sql3 = $conexao->prepare($sql3);
 
     $sql3->bindValue(':id_pedido', $id_carrinho);
     $sql3->bindValue(':codbarra', $codbarra);
