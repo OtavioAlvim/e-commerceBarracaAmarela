@@ -114,8 +114,7 @@ require('../../lib/login/verificaLogin.php');
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../assets/js/dashboard.js"></script>
+
 
 
 <!-- Modal -->
@@ -132,11 +131,14 @@ require('../../lib/login/verificaLogin.php');
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-        <button type="button" class="btn">ATUALIZAR CADASTROS</button>
+        <button type="button" class="btn" id="busca_produto">ATUALIZAR CADASTROS</button>
       </div>
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
 </body>
 
 </html>

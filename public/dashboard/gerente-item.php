@@ -34,12 +34,6 @@ $id_produto = $_GET['PRODUTO'];
 
 <body>
 
-    <!-- Example Code -->
-    <!-- <nav class="navbar fixed-top bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Fixed top</a>
-      </div>
-    </nav> -->
     <nav class="navbar fixed-top navbar-expand-lg" id="detalhes">
         <div class="container-fluid">
             <span class="navbar-text">

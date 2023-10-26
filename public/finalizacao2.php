@@ -136,7 +136,7 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
+                        <?php
                                 $n = 0;
                                 foreach ($results as $results) {
                                 ?>

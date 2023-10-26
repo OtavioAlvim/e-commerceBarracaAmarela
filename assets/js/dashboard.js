@@ -70,5 +70,7 @@ $(document).ready(function () {
     });
 });
 
-
+$("#busca_produto").on('click', function () {
+    console.log('Eu to aqui')
+});
 
