@@ -123,11 +123,12 @@ require('../../lib/login/verificaLogin.php');
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">ATUALIZAR CADASTROS</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h4>ATENÇÃO !! Esse processo vai atualizar todo o preço do sistema com base nos valores cadastrados no sia</h4>
+        <h4 class="text-center" style="color: red;">ATENÇÃO !!</h4><p>Esse processo vai atualizar todo o preço do sistema com base nos valores cadastrados no Sia.</p>
+        <p>Esse processo buscará tambem novos produtos cadastrados no Sia.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
