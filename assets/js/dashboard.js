@@ -12,7 +12,7 @@ $(document).ready(function () {
             $("#loadingDiv").hide();
             // Atualize o conteúdo da página com os dados iniciais
             $('#conteudo').html(data);
-            console.log(data)
+
         }
     });
     // Inicialização da página
@@ -22,6 +22,7 @@ $(document).ready(function () {
         success: function (data) {
             // Atualize o conteúdo da página com os dados iniciais
             $('#opcoes').html(data);
+            console.log(data)
         }
     });
 

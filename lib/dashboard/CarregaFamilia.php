@@ -1,5 +1,5 @@
 <?php
-$pdo2 = new PDO('sqlite:./db/produto.db');
+$pdo2 = new PDO('sqlite:../db/produto.db');
 
 
 $sql = "SELECT p.FAMILIA,p.NOMEFAMILIA FROM produtos_integracao p GROUP BY p.NOMEFAMILIA";

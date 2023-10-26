@@ -26,11 +26,7 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $result['DESCRICAO']?></td>
                 <td class="text-center"><?php echo $result['UNIDADE']?></td>
                 <td class="text-center">
-                    <form action="./gerente-item.php" method="post">
-                        <input type="hidden" name="id_produto" value="<?php echo $result['CODITEM']?>">
-                        <button type="submit" class="btn btn-sm">EDITAR</button>
-                    </form>
-
+                        <a type="submit" class="btn btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM']?>">EDITAR</a>
                 </td>
             </tr>
         <?php }

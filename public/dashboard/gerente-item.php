@@ -1,5 +1,7 @@
 <?php
 require('../../lib/login/verificaLogin.php');
+
+$id_produto = $_GET['PRODUTO'];
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -57,11 +59,12 @@ require('../../lib/login/verificaLogin.php');
                         <a class="nav-link active" aria-current="page" href="../pagina_inicial.php">PRODUTOS</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./gerente.php">DASHBOARD</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./index.php">ATUALIZAR CADASTROS</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="./index.php">Meus pedidos</a>
-                    </li> -->
+
                 </ul>
                 <span class="navbar-text">
                     <span class="navbar-text">
@@ -79,47 +82,14 @@ require('../../lib/login/verificaLogin.php');
         </div>
     </nav>
     <br><br><br>
-    <div class="container">
-        <br>
-        <h4>PRODUTO: 10554</h4>
-
-        <form class="row g-3">
-            <div class="col-md-12">
-                <label for="inputEmail4" class="form-label">DESCRIÇÃO</label>
-                <input type="email" class="form-control" id="inputEmail4" value="CHICO ALICATE">
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">IMAGEM DO PRODUTO</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
-            <div class="col-md-3">
-                <label for="inputPassword4" class="form-label">PROMOÇÃO</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-md-3">
-                <label for="inputAddress" class="form-label">UNITARIO</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-md-3">
-                <label for="inputAddress2" class="form-label">ATACADO</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-3">
-                <label for="inputCity" class="form-label">REVENDA</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="col-md-12">
-                <label for="exampleFormControlTextarea1" class="form-label">FICHA TÉCNICA DO PRODUTO</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn">INSERIR DADOS</button>
-            </div>
-        </form>
+    <input type="hidden" name="id_produto" value="<?php echo $id_produto ?>" id="id_produto">
+    <div class="container" id="conteudo">
+<!-- vira do banco dados  -->
     </div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../assets/js/dashboard_itens.js"></script>
 
 </body>
 

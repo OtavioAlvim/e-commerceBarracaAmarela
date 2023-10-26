@@ -1,6 +1,6 @@
 <?php
-$pdo = new PDO('sqlite:./db/bancoImagens.db');
-$pdo2 = new PDO('sqlite:./db/produto.db');
+$pdo = new PDO('sqlite:../db/bancoImagens.db');
+$pdo2 = new PDO('sqlite:../db/produto.db');
 
 $familia = $_GET['opcao'];
 $sql = "SELECT * FROM produtos_integracao p WHERE p.FAMILIA = {$familia}";
@@ -9,40 +9,33 @@ $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="container">
+<div class="container-fluid">
     <p>RESULTADO DA PESQUISA : <?php echo $result[0]['NOMEFAMILIA'] ?></p>
 </div>
-<div class="row row-cols-1 row-cols-md-1 row-cols-lg-5 align-items-start g-2">
-    <?php
-    foreach ($result as $result) {
-        $sql = $pdo->prepare("select * from imagens where coditem = :id_produto");
-        $sql->bindValue(':id_produto', $result['CODITEM']);
-        $sql->execute();
-        $image = $sql->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($image as $image) {
-        }
-        if (empty($image['patch_image'])) :
-            // echo 'não tem imagem'; 
-            $image_caminho = '../assets/img/padrao_sistema/sem_imagem.png';
+<table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-1 text-center" scope="col">ID</th>
+                <th class="col-9" scope="col">DESCRICAO</th>
+                <th class="col-1 text-center" scope="col">UNIDADE</th>
+                <th class="col-1 text-center" scope="col">EDITAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($result as $result) {
+            ?>
+                <tr>
+                    <th class="text-center" scope="row"><?php echo $result['CODITEM'] ?></th>
+                    <td><?php echo $result['DESCRICAO'] ?></td>
+                    <td class="text-center"><?php echo $result['UNIDADE'] ?></td>
+                    <td class="text-center">
+                        <a type="submit" class="btn btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM']?>">EDITAR</a>
+                </td>
+                </tr>
+            <?php }
+            ?>
 
-        else :
-            // echo 'tem imagem'; 
-            $image_caminho = '../assets/img/produto/' . $image['patch_image'];
-        endif;
-        $image_caminho
-    ?>
-        <a href="./detalhes.php?item=<?php echo $result['CODITEM'] ?>">
-            <div class="col">
-                <div class="card">
-                    <img src="<?php echo $image_caminho ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $result['DESCRICAO'] ?></h5>
-                        <p>R$ <?php echo number_format($result['UNITARIO'], 2, ',', ' ') ?></p>
-                    </div>
-                </div>
             </div>
-        </a>
-    <?php }
-    ?>
-
-</div>
+        </tbody>
+    </table>

@@ -56,7 +56,7 @@ $image_caminho
     </style>
 </head>
 
-<body class="border-0 bd-example m-0 border-0">
+<body class="bd-example">
 
     <!-- Example Code -->
 

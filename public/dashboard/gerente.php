@@ -57,7 +57,7 @@ require('../../lib/login/verificaLogin.php');
                         <a class="nav-link active" aria-current="page" href="../pagina_inicial.php">PRODUTOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php">ATUALIZAR CADASTROS</a>
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">ATUALIZAR CADASTROS</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="./index.php">Meus pedidos</a>
@@ -117,6 +117,25 @@ require('../../lib/login/verificaLogin.php');
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../assets/js/dashboard.js"></script>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>ATENÇÃO !! Esse processo vai atualizar todo o preço do sistema com base nos valores cadastrados no sia</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
+        <button type="button" class="btn">ATUALIZAR CADASTROS</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
