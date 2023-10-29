@@ -1,6 +1,6 @@
 <?php
-$pdo = new PDO('sqlite:./db/bancoImagens.db');
-$pdo2 = new PDO('sqlite:./db/produto.db');
+$pdo = new PDO('sqlite:../db/bancoImagens.db');
+$pdo2 = new PDO('sqlite:../db/produto.db');
 
 $familia = $_GET['opcao'];
 $sql = "SELECT * FROM produtos_integracao p WHERE p.FAMILIA = {$familia}";

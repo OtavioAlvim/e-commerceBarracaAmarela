@@ -9,6 +9,7 @@ $sql->bindValue(':id_produto',$id_produto);
 $sql->execute();
 $produto = $sql->fetchAll(PDO::FETCH_ASSOC);
 foreach($produto as $produto){?>
+
         <br>
         <h4>PRODUTO: <?php echo $produto['CODITEM'] ?></h4>
         <form class="row g-3"  action="../../lib/dashboard_itens/InsereAtualizaProduto.php" method="post" enctype="multipart/form-data">
@@ -22,19 +23,19 @@ foreach($produto as $produto){?>
             </div>
             <div class="col-md-3">
                 <label for="inputPassword4" class="form-label">PROMOÇÃO</label>
-                <input type="number" class="form-control" id="inputPassword4" name="PROMOCAO" value="<?php echo number_format($produto['PROMOCAO'], 2) ?>">
+                <input type="number" class="form-control" id="inputPassword4" name="PROMOCAO" step="0.01" value="<?php echo number_format($produto['PROMOCAO'], 2) ?>">
             </div>
             <div class="col-md-3">
                 <label for="inputAddress" class="form-label">UNITARIO</label>
-                <input type="number" class="form-control" id="inputAddress" name="UNITARIO" value="<?php echo number_format($produto['UNITARIO'], 2) ?>">
+                <input type="number" class="form-control" id="inputAddress" name="UNITARIO" step="0.01" value="<?php echo number_format($produto['UNITARIO'], 2) ?>">
             </div>
             <div class="col-md-3">
                 <label for="inputAddress2" class="form-label">ATACADO</label>
-                <input type="number" class="form-control" id="inputAddress2" name="UNITARIOATACADO" value="<?php echo number_format($produto['UNITARIOATACADO'], 2) ?>">
+                <input type="number" class="form-control" id="inputAddress2" name="UNITARIOATACADO" step="0.01" value="<?php echo number_format($produto['UNITARIOATACADO'], 2) ?>">
             </div>
             <div class="col-md-3">
                 <label for="inputCity" class="form-label">REVENDA</label>
-                <input type="number" class="form-control" id="inputCity" name="PRECOREVENDA" value="<?php echo number_format($produto['PRECOREVENDA'], 2) ?>">
+                <input type="number" class="form-control" id="inputCity" name="PRECOREVENDA" step="0.01" value="<?php echo number_format($produto['PRECOREVENDA'], 2) ?>">
             </div>
             <div class="col-md-12">
                 <label for="exampleFormControlTextarea1" class="form-label">FICHA TÉCNICA DO PRODUTO</label>
@@ -42,8 +43,8 @@ foreach($produto as $produto){?>
             </div>
             <div class="col-12">
                 <input type="hidden" name="id_produto" value="<?php echo $produto['CODITEM'] ?>">
-                <button type="submit" class="btn">INSERIR DADOS</button>
-                <a type="button" class="btn" href="./gerente.php">CANCELAR</a>
+                <button type="submit" class="btn btn-dark">INSERIR DADOS</button>
+                <a type="button" class="btn btn-dark" href="./gerente.php">CANCELAR</a>
             </div>
         </form>
 <?php }

@@ -12,7 +12,7 @@ $planopgto = $_POST['planopgto'];
 $planoconta = $_POST['planoconta'];
 $id_banco = $_POST['id_banco'];
 $id_pedido_cliente = $_POST['id_pedido'];
-$observacao = $_POST['observacao'];
+$observacao_1 = $_POST['observacao'];
 // $userid = 1;
 // $id_empresa = 1;
 // $tipopedido = 10;
@@ -21,7 +21,48 @@ $observacao = $_POST['observacao'];
 // $planoconta = 1;
 // $id_banco = 1;
 // $id_pedido_cliente = 1;
-// $observacao = "teste";
+$observacao = "PEDIDO N *" . $id_pedido_cliente . "* " . strtoupper($observacao_1);
+
+
+// apos os dados recuperados, hora de percistir os dados do carrinho para setar como finalizado e colocar o valor final dos itens
+$sql5 = "select sum(total) as total from itens_carrinho_ecommerce where ID_CARRINHO_ECOMMERCE = :id_pedido_cliente";
+$sql5 = $pdo2->prepare($sql5);
+$sql5->bindValue(':id_pedido_cliente', $id_pedido_cliente);
+$sql5->execute();
+$total_produtos_carrinho = $sql5->fetchAll(PDO::FETCH_ASSOC);
+
+
+// insere o valor final do carrinho na tabela
+$sql6 = "UPDATE carrinho_ecommerce SET TOTAL = :total WHERE ID =:id_pedido";
+$sql6 = $pdo2->prepare($sql6);
+$sql6->bindValue(':total', $total_produtos_carrinho[0]['total']);
+$sql6->bindValue(':id_pedido', $id_pedido_cliente);
+$sql6->execute();
+
+$sql11 = "UPDATE carrinho_ecommerce SET
+`STATUS` = 'F' ,
+EMISSAO = CURRENT_DATE
+WHERE ID =:id_pedido_cliente";
+$sql11 = $pdo2->prepare($sql11);
+$sql11->bindValue(':id_pedido_cliente', $id_pedido_cliente);
+$sql11->execute();
+
+
+////////////////////////////////////////////////INICIA VALIDAÇÕES PARA INSERT NO SIA
+////////////////////////////////////////// VALIDA TABELA SYS_SEQUENCIADOR DO SIA PARA VERIFICAR SE O ID DE ULTIMO PEDIDO ESTÃO BATENDO
+$query = "UPDATE sys_sequenciador s
+SET s.VALOR = (SELECT p.VENDA FROM prevenda p ORDER BY p.VENDA DESC LIMIT 1)
+WHERE s.TABELA = 'PREVENDA'";
+$query = $conexao->prepare($query);
+$query->execute();
+
+$query2 = "UPDATE sys_sequenciador s
+SET s.VALOR = (SELECT pr.PRIMARIA FROM produtos_prevenda pr ORDER BY pr.PRIMARIA desc LIMIT 1)
+WHERE s.TABELA = 'PRODUTOS_PREVENDA'";
+$query2 = $conexao->prepare($query2);
+$query2->execute();
+
+/////////////////////////////////////////////FINALIZA VALIDAÇÕES SYS_SEQUENCIADOR//////////////////////////////////////
 // recupera o ultimo id da sequenciador do sia prevenda
 $sql2 = "SELECT * FROM sys_sequenciador s WHERE s.TABELA = 'PREVENDA'";
 $sql2 = $conexao->prepare($sql2);
@@ -33,30 +74,16 @@ $id_venda = $prevenda_id[0]['VALOR'] + 1;
 // recupera os dados do cliente
 $sql3 = "SELECT * FROM clientes c WHERE c.CODIGOCLI =:idcliente ";
 $sql3 = $conexao->prepare($sql3);
-$sql3->bindValue(':idcliente',$userid);
+$sql3->bindValue(':idcliente', $userid);
 $sql3->execute();
 $cliente = $sql3->fetchAll(PDO::FETCH_ASSOC);
 
 
-// apos os dados recuperados, hora de percistir os dados do carrinho para setar como finalizado e colocar o valor final dos itens
-$sql5 = "select sum(total) as total from itens_carrinho_ecommerce where ID_CARRINHO_ECOMMERCE = :id_pedido_cliente";
-$sql5 = $pdo2->prepare($sql5);
-$sql5->bindValue(':id_pedido_cliente',$id_pedido_cliente);
 
-$sql5->execute();
-$total_produtos_carrinho = $sql5->fetchAll(PDO::FETCH_ASSOC);
-
-
-// insere o valor final do carrinho na tabela
-$sql6 = "UPDATE carrinho_ecommerce SET TOTAL = :total WHERE ID =:id_pedido";
-$sql6 = $pdo2->prepare($sql6);
-$sql6->bindValue(':total',$total_produtos_carrinho[0]['total']);
-$sql6->bindValue(':id_pedido',$id_pedido_cliente);
-$sql6->execute();
-
+// recupera os dados do carrinho para inserir no sia
 $sql7 = "SELECT * FROM carrinho_ecommerce WHERE ID =:id";
 $sql7 = $pdo2->prepare($sql7);
-$sql7->bindValue(':id',$id_pedido_cliente);
+$sql7->bindValue(':id', $id_pedido_cliente);
 $sql7->execute();
 $carrinho = $sql7->fetchAll(PDO::FETCH_ASSOC);
 
@@ -435,13 +462,13 @@ $sql4->execute();
 // recupera dados dos itens do carrinho 
 $sql8 = "SELECT * FROM itens_carrinho_ecommerce c WHERE c.ID_CARRINHO_ECOMMERCE =:id_pedido";
 $sql8 = $pdo2->prepare($sql8);
-$sql8->bindValue(':id_pedido',$id_pedido_cliente);
+$sql8->bindValue(':id_pedido', $id_pedido_cliente);
 $sql8->execute();
 $itens_carrinho = $sql8->fetchAll(PDO::FETCH_ASSOC);
 
-foreach($itens_carrinho as $itens_carrinho){
+foreach ($itens_carrinho as $itens_carrinho) {
     $sql5 =
-    "INSERT INTO `produtos_prevenda` (
+        "INSERT INTO `produtos_prevenda` (
     `EMPRESA`, 
     `VENDA`, 
     `CODIGO`, 
@@ -681,19 +708,20 @@ foreach($itens_carrinho as $itens_carrinho){
     $sql5->execute();
 }
 
-$sql10 = "UPDATE sys_sequenciador s
-SET s.VALOR = :id_venda
-WHERE s.TABELA IN ('PREVENDA','PRODUTOS_PREVENDA')";
-$sql10 = $conexao->prepare($sql10);
-$sql10->bindValue(':id_venda',$id_venda);
-$sql10->execute();
+////////////////////////////////////////// VALIDA TABELA SYS_SEQUENCIADOR DO SIA PARA VERIFICAR SE O ID DE ULTIMO PEDIDO ESTÃO BATENDO
+$query = "UPDATE sys_sequenciador s
+SET s.VALOR = (SELECT p.VENDA FROM prevenda p ORDER BY p.VENDA DESC LIMIT 1)
+WHERE s.TABELA = 'PREVENDA'";
+$query = $conexao->prepare($query);
+$query->execute();
 
-$sql11 = "UPDATE carrinho_ecommerce SET
-`STATUS` = 'F' WHERE ID =:id_pedido_cliente";
-$sql11 = $pdo2->prepare($sql11);
-$sql11->bindValue(':id_pedido_cliente',$id_pedido_cliente);
-$sql11->execute();
+$query2 = "UPDATE sys_sequenciador s
+SET s.VALOR = (SELECT pr.PRIMARIA FROM produtos_prevenda pr ORDER BY pr.PRIMARIA desc LIMIT 1)
+WHERE s.TABELA = 'PRODUTOS_PREVENDA'";
+$query2 = $conexao->prepare($query2);
+$query2->execute();
+
+/////////////////////////////////////////////FINALIZA VALIDAÇÕES SYS_SEQUENCIADOR//////////////////////////////////////
 
 // Definir uma mensagem na resposta
 $_SESSION['pedido_finalizado'] = true;
-

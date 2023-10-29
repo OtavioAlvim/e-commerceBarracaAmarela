@@ -30,7 +30,7 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $result['DESCRICAO'] ?></td>
                     <td class="text-center"><?php echo $result['UNIDADE'] ?></td>
                     <td class="text-center">
-                        <a type="submit" class="btn btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM']?>">EDITAR</a>
+                        <a type="submit" class="btn btn-dark btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM']?>">EDITAR</a>
                 </td>
                 </tr>
             <?php }

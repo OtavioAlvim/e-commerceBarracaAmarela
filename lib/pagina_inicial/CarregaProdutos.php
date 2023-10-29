@@ -1,6 +1,6 @@
 <?php
-$pdo = new PDO('sqlite:./db/bancoImagens.db');
-$pdo2 = new PDO('sqlite:./db/produto.db');
+$pdo = new PDO('sqlite:../db/bancoImagens.db');
+$pdo2 = new PDO('sqlite:../db/produto.db');
 
 $nome_preco = $_GET['nome_perfil'];
 $sql = "SELECT * FROM produtos_integracao";
@@ -16,13 +16,12 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         $sql->execute();
         $image = $sql->fetchAll(PDO::FETCH_ASSOC);
         foreach ($image as $image) {
-            
         }
-        if(empty($image['patch_image'])): 
+        if (empty($image['patch_image'])) :
             // echo 'não tem imagem'; 
             $image_caminho = '../assets/img/padrao_sistema/sem_imagem.png';
 
-        else: 
+        else :
             // echo 'tem imagem'; 
             $image_caminho = '../assets/img/produto/' . $image['patch_image'];
         endif;

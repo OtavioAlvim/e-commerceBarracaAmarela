@@ -2,11 +2,10 @@
 require('../conexao.php');
 $pdo2 = new PDO('sqlite:../db/produto.db');
 
-$sql = "SELECT * FROM produtos_integracao_pda limit 100";
+$sql = "SELECT * FROM produtos_integracao_pda";
 $sql = $conexao->prepare($sql);
 $sql->execute();
 $produto = $sql->fetchAll(PDO::FETCH_ASSOC);
-// print_r($produto);
 
 foreach ($produto as $produtos) {
     $sql = "select * from produtos_integracao p where p.CODITEM =:id_produto";
@@ -16,8 +15,6 @@ foreach ($produto as $produtos) {
     $res = $sql->fetchAll(PDO::FETCH_ASSOC);
     if(empty($res)){
         // produto não tem, ele sera inserido
-        // echo 'não tem';
-        // echo '<br>';
         $sqll = "INSERT INTO produtos_integracao (CODITEM, CODBARRA, DESCRICAO, ABREVIA, OBSERVACOES, GRUPO, NOMEGRUPO, CATEGORIA, NOMECATEGORIA, FAMILIA, NOMEFAMILIA, UNIDADE, CUSTO, UNITARIO, PROMOCAO, UNITARIOATACADO, PRECOREVENDA, ALIQUOTASAIDA, CFOPVENDAECF) VALUES (:id_produto,:codbarra,:descricao,:abrevia,:observacao,:grupo,:nome_grupo,:categoria,:nome_categoria,:familia,:nome_familia,:unidade,:custo,:unitario,:promocao,:atacado,:revenda,:aliquota,:cfop)";
         $sqll = $pdo2->prepare($sqll);
         $sqll->bindValue(':id_produto',$produtos['CODITEM']);
@@ -42,8 +39,6 @@ foreach ($produto as $produtos) {
         $sqll->execute();
     }else{
         // produto ja tem, ele sera atualizado
-        // echo 'tem';
-        // echo '<br>';
 
         $sql2 = "update produtos_integracao 
         set
@@ -62,3 +57,4 @@ foreach ($produto as $produtos) {
         $sql2->execute();
     }
 }
+

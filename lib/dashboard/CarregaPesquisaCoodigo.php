@@ -2,7 +2,7 @@
 $pdo2 = new PDO('sqlite:../db/produto.db');
 
 $descricao = $_POST['pesquisa'];
-$sql = "SELECT * FROM produtos_integracao p WHERE p.DESCRICAO like '%{$descricao}%'";
+$sql = "SELECT * FROM produtos_integracao p WHERE p.CODITEM like '{$descricao}%'";
 $sql = $pdo2->prepare($sql);
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);

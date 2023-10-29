@@ -5,7 +5,7 @@ $(document).ready(function () {
     var userid = $("#userid").val()
     // console.log(nome_perfil)
     $.ajax({
-        url: '../lib/CarregaProdutos.php',
+        url: '../lib/pagina_inicial/CarregaProdutos.php',
         method: 'GET',
         data: { nome_perfil: nome_perfil },
         success: function (data) {
@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
     // Inicialização da página
     $.ajax({
-        url: '../lib/CarregaFamilia.php',
+        url: '../lib/pagina_inicial/CarregaFamilia.php',
         method: 'GET',
         success: function (data) {
             // Atualize o conteúdo da página com os dados iniciais
@@ -30,7 +30,7 @@ $(document).ready(function () {
         console.log(selecionado);
         if (selecionado === '9999999999') {
             $.ajax({
-                url: '../lib/CarregaProdutos.php',
+                url: '../lib/pagina_inicial/CarregaProdutos.php',
                 method: 'GET',
                 data: { nome_perfil: nome_perfil },
                 success: function (data) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
             });
         } else {
             $.ajax({
-                url: '../lib/CarregaProdutosFamilia.php',
+                url: '../lib/pagina_inicial/CarregaProdutosFamilia.php',
                 method: 'GET',
                 data: { opcao: selecionado },
                 success: function (data) {
@@ -57,7 +57,7 @@ $(document).ready(function () {
         var pesquisa = $(this).val();
         console.log(pesquisa);
         $.ajax({
-            url: '../lib/CarregaPesquisa.php',
+            url: '../lib/pagina_inicial/CarregaPesquisa.php',
             method: 'POST',
             data: { pesquisa: pesquisa },
             success: function (data) {
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     // verifica se tem itens no carrinho, se sim, exibe eles
     $.ajax({
-        url: '../lib/VerificaCarrinho.php',
+        url: '../lib/pagina_inicial/VerificaCarrinho.php',
         method: 'GET',
         data: {
             userid: userid // Inclua o valor oculto nos dados da requisição
@@ -82,7 +82,7 @@ $(document).ready(function () {
                 // <!-- pedido ja contem itens -->
                 // carrega os item do carrinho
                 $.ajax({
-                    url: '../lib/CarregaCarrinhoItens.php',
+                    url: '../lib/pagina_inicial/CarregaCarrinhoItens.php',
                     method: 'GET',
                     data: {
                         userid: userid // Inclua o valor oculto nos dados da requisição
@@ -95,7 +95,7 @@ $(document).ready(function () {
                 });
                 // carrega o total do carrinho
                 $.ajax({
-                    url: '../lib/CarregaCarrinhoTotal.php',
+                    url: '../lib/pagina_inicial/CarregaCarrinhoTotal.php',
                     method: 'GET',
                     data: {
                         userid: userid // Inclua o valor oculto nos dados da requisição
@@ -108,7 +108,7 @@ $(document).ready(function () {
                 });
                 // carrega quantia de itens carrinho
                 $.ajax({
-                    url: '../lib/CarregaCarrinhoQuantidade.php',
+                    url: '../lib/pagina_inicial/CarregaCarrinhoQuantidade.php',
                     method: 'GET',
                     data: {
                         userid: userid // Inclua o valor oculto nos dados da requisição
@@ -122,7 +122,7 @@ $(document).ready(function () {
             } else {
                 // <!-- pedido não contem itens -->
                 $.ajax({
-                    url: '../lib/CarregaCarrinhoVazio.php',
+                    url: '../lib/pagina_inicial/CarregaCarrinhoVazio.php',
                     method: 'GET',
                     data: {
                         userid: userid // Inclua o valor oculto nos dados da requisição

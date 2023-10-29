@@ -51,9 +51,6 @@ require('../lib/login/verificaLogin.php');
                     <li class="nav-item">
                         <a class="nav-link" href="../public/pedidos/index.php">Meus pedidos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./dashboard/gerente.php">Dashboard</a>
-                    </li>
                 </ul>
                 <span class="navbar-text">
                     <a href="../lib/login/logout.php">
@@ -102,6 +99,20 @@ require('../lib/login/verificaLogin.php');
 
         </div>
     </div>
+    <!-- <br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link">VOLTAR</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">PROXIMA</a>
+            </li>
+        </ul>
+    </nav> -->
 
     <!-- End Example Code -->
 
@@ -129,7 +140,7 @@ require('../lib/login/verificaLogin.php');
 
                 </div>
                 <div class="modal-body" id="total_carrinho">
-                    
+
                 </div>
                 <div class="modal-footer" id="totCarrinhoo">
                     <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>

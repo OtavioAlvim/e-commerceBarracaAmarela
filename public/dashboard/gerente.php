@@ -5,140 +5,236 @@ require('../../lib/login/verificaLogin.php');
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>PAGINA INICIAL</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/pedidos.css">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>GERENTE</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
 
-        a {
-            text-decoration: none;
-        }
 
-        tr {
-            background-color: red;
-        }
-    </style>
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./gerente.php">GERENTE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MENU</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal">RECEBER CARGA DE PRODUTOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exportar">EXPORTAR PEDIDOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./gerente_pedidos.php">PEDIDOS REALIZADOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#planilha">IMPORTAR PLANILHA</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./gerente-config.php">CONFIGURAÇÕES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../lib/login/logout.php">SAIR</a>
+            </li>
 
-    <!-- Example Code -->
-    <!-- <nav class="navbar fixed-top bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Fixed top</a>
+          </ul>
+        </div>
       </div>
-    </nav> -->
-    <nav class="navbar fixed-top navbar-expand-lg" id="detalhes">
-        <div class="container-fluid">
-            <span class="navbar-text">
-                <button type="button" class="btn btn-light position-relative border-0">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
-                        <path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
-                    </svg>
-                </button>
-            </span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../pagina_inicial.php">PRODUTOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">ATUALIZAR CADASTROS</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="./index.php">Meus pedidos</a>
-                    </li> -->
-                </ul>
-                <span class="navbar-text">
-                    <span class="navbar-text">
-                        <a href="../../lib/login/logout.php">
-                            <button type="button" class="btn btn-light position-relative border-0">
-                                <?php echo $_SESSION['username'] ?>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                </svg>
-                            </button></a>
-                    </span>
-                </span>
-            </div>
-        </div>
-    </nav>
-    <br><br><br><br><br>
+    </div>
+  </nav>
+  <br><br><br><br><br>
     <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <form class="row g-3" id="consulta_produto">
-                        <div class="col">
-                            <label for="inputPassword2" class="visually-hidden">Password</label>
-                            <input type="text" class="form-control" id="descricao_prod" placeholder="Pesquise o Produto" autofocus>
-                        </div>
-                    </form>
-                </div><br>
+      <div class="row">
+        <div class="col">
+          <form class="row g-1" id="consulta_produto">
+            <div class="col-2">
+              <label for="inputPassword2" class="visually-hidden">ID_PRODUTO</label>
+              <input type="text" class="form-control" id="id_prod" placeholder="IDPRODUTO" autofocus>
             </div>
-
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col-sm-4">
-                    <br>
-                    <select class="form-select form-select-sm" aria-label="Small select example" id="opcoes">
-                    </select>
-                </div>
+            <div class="col">
+              <label for="inputPassword2" class="visually-hidden">DESCRICAO</label>
+              <input type="text" class="form-control" id="descricao_prod" placeholder="Pesquise o Produto" autofocus>
             </div>
+          </form>
         </div>
-        <input type="hidden" name="idperfil" value="<?php echo $_SESSION['idperfil'] ?>" id="idperfil">
-        <input type="hidden" name="nome_perfil" value="<?php echo $_SESSION['OBSERVACAO'] ?>" id="nome_perfil">
-        <br>
-        <h4>Produtos cadastrados:</h4>
-        <div class="container-fluid" id="conteudo">
+      </div>
+
+      <div class="row">
+        <div class="col">
 
         </div>
+        <div class="col-sm-4">
+          <br>
+          <select class="form-select form-select-sm" aria-label="Small select example" id="opcoes">
+          </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container" id="conteudo">
 
     </div>
 
 
+  <!-- div de carregamento -->
+  <div id="loadingDiv" class="text-center" style="display: none;">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; z-index: 999;">
+      <img src="../../assets/img/padrao_sistema/carregamento.gif" alt="Carregando..." style="width: 182px; height: 182px;">
+    </div>
+  </div>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">ATUALIZAR CADASTROS</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h4 class="text-center" style="color: red;">ATENÇÃO !!</h4><p>Esse processo vai atualizar todo o preço do sistema com base nos valores cadastrados no Sia.</p>
-        <p>Esse processo buscará tambem novos produtos cadastrados no Sia.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" data-bs-dismiss="modal">CANCELAR</button>
-        <button type="button" class="btn" id="busca_produto">ATUALIZAR CADASTROS</button>
+  <!-- Modal atualizar cadastros -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">ATUALIZAR CADASTROS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-center" style="color: red;">ATENÇÃO !!</h4>
+          <p>Esse processo vai atualizar todo o preço do sistema com base nos valores cadastrados no Sia.</p>
+          <p>Esse processo buscará tambem novos produtos cadastrados no Sia.</p>
+
+          <div class="text-center" id="carregando" style="display: none;">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">CANCELAR</button>
+          <button type="button" class="btn btn-dark" id="busca_produto">ATUALIZAR CADASTROS</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../assets/js/dashboard.js"></script>
+
+
+  <!-- Modal exportar pedido-->
+  <div class="modal fade" id="exportar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">EXPORTAR PEDIDO</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Selecione um perido para exportação dos pedidos</p>
+          <div class="row g-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="date" class="form-control" id="floatingInputGrid">
+                <label for="floatingInputGrid">Data inicial</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="date" class="form-control" id="floatingInputGrid">
+                <label for="floatingInputGrid">Data inicial</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">CANCELAR</button>
+          <button type="button" class="btn btn-dark" id="busca_produto">ATUALIZAR CADASTROS</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal importar planilha -->
+  <div class="modal fade" id="planilha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form action="" method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">ATUALIZAR CADASTROS</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Selecione o arquivo para importacao</label>
+              <input type="file" class="form-control" aria-label="file example" required>
+              <div class="invalid-feedback">Example invalid form file feedback</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">CANCELAR</button>
+            <button type="submit" class="btn btn-dark" id="busca_produto">ATUALIZAR CADASTROS</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../../assets/js/dashboard.js"></script>
+
+  <?php
+    if (isset($_SESSION['pedido_cancelado'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Produto Inserido com sucesso!',
+                showConfirmButton: false,
+                timer: 500
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['pedido_cancelado']);
+    ?>
+
+
+    <?php
+    if (isset($_SESSION['produto_sem_item'])) :
+    ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Quantidade minima não inserida',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['produto_sem_item']);
+    ?>
 </body>
 
 </html>

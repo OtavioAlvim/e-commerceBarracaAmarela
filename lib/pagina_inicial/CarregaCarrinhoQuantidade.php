@@ -1,5 +1,5 @@
 <?php
-$pdo2 = new PDO('sqlite:./db/carrinho.db');
+$pdo2 = new PDO('sqlite:../db/carrinho.db');
 
 $userid = $_GET['userid'];
 $sql = "SELECT  COALESCE(COUNT(*),0) AS total FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE ={$userid} AND c.`STATUS` = 'A'";

@@ -57,7 +57,7 @@
                 <form action="./lib/login/UserValidation.php" method="post">
                     <div class="form-group">
                         <label for="username">Usuário:</label>
-                        <input type="email" class="form-control" id="username" name="user" placeholder="Digite seu usuário" autofocus>
+                        <input type="text" class="form-control" id="username" name="user" placeholder="Digite seu usuário" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="password">Senha:</label>

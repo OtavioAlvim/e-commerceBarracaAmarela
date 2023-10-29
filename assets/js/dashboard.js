@@ -68,9 +68,34 @@ $(document).ready(function () {
             }
         });
     });
+
+
+        // Quando o usuário digitar algo no campo de pesquisa
+        $('#id_prod').on('input', function () {
+            var pesquisa = $(this).val();
+            console.log(pesquisa);
+            $.ajax({
+                url: '../../lib/dashboard/CarregaPesquisaCoodigo.php',
+                method: 'POST',
+                data: { pesquisa: pesquisa },
+                success: function (data) {
+                    // Exiba os resultados da pesquisa
+                    $('#conteudo').html(data);
+                }
+            });
+        });
 });
 
 $("#busca_produto").on('click', function () {
-    console.log('Eu to aqui')
+    $("#carregando").show();
+    $.ajax({
+        url: '../../lib/dashboard_itens/InsereNovosProdutos.php',
+        method: 'POST',
+        success: function (data) {
+            // Exiba os resultados da pesquisa
+            $("#carregando").hide();
+            location.reload();
+        }
+    });
 });
 

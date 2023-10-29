@@ -1,25 +1,15 @@
 <?php
-require_once './conexao.php';
+$pdo2 = new PDO('sqlite:../db/carrinho.db');
 
 $userid = $_GET['userid'];
 $sql = "SELECT ic.* FROM carrinho_ecommerce c JOIN itens_carrinho_ecommerce ic on c.ID = ic.ID_CARRINHO_ECOMMERCE WHERE c.ID_CLIENTE =:idcliente AND c.`STATUS` = 'A'";
-$sql = $conexao->prepare($sql);
+$sql = $pdo2->prepare($sql);
 $sql->bindValue(':idcliente', $userid);
 $sql->execute();
 $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-if (empty($results)) { ?>
-    <!-- //  "não tem nada"; -->
-
-    <div class="d-flex justify-content-center align-items-center">
-        <img src="../assets/img/padrao_sistema/carrinho.png" alt="Carregando...">
-    </div>
-    <p class="text-center">Nenhum produto encontrado no seu carrinho!</p>
-
-<?php
-} else {?>
-    <!-- "tem algo"; -->
-    <table class="table table-hover">
+?>
+<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col" class="col-1">ID</th>
@@ -56,6 +46,3 @@ if (empty($results)) { ?>
         <?php } ?>
     </tbody>
 </table>
-<?php
-}
-?>

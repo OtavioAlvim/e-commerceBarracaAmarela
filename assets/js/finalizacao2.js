@@ -85,7 +85,7 @@ $("#remover_forma").on('click', function () {
 
 
 $("#salvarDados").on('click', function () {
-    $("#loadingDiv").show();
+    // $("#loadingDiv").show();
     var userid = $("#userid").val()
     var id_empresa = $("#id_empresa").val()
     var tipopedido = $("#tipopedido").val()
@@ -95,7 +95,7 @@ $("#salvarDados").on('click', function () {
     var id_banco = $("#id_banco").val()
     var id_pedido = $("#id_pedido").val()
     var observacao = $("#floatingTextarea2").val()
-
+    console.log(observacao)
     // preciso verificar essa chamada amanha de maneira que  antes de enviar a requisição para o sia ele verifique se a forma de pagamento ja esta preenchida
     $.ajax({
         type: "POST",
