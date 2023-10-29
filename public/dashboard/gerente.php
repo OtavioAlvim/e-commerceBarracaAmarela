@@ -45,11 +45,11 @@ require('../../lib/login/verificaLogin.php');
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal">RECEBER CARGA DE PRODUTOS</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exportar">EXPORTAR PEDIDOS</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="./gerente_pedidos.php">PEDIDOS REALIZADOS</a>
+              <a class="nav-link" href="./gerente_pedidos.php">PEDIDOS PENDENTES</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="modal" data-bs-target="#planilha">IMPORTAR PLANILHA</a>
@@ -73,7 +73,7 @@ require('../../lib/login/verificaLogin.php');
           <form class="row g-1" id="consulta_produto">
             <div class="col-2">
               <label for="inputPassword2" class="visually-hidden">ID_PRODUTO</label>
-              <input type="text" class="form-control" id="id_prod" placeholder="IDPRODUTO" autofocus>
+              <input type="text" class="form-control" id="id_prod" placeholder="ID PRODUTO" autofocus>
             </div>
             <div class="col">
               <label for="inputPassword2" class="visually-hidden">DESCRICAO</label>

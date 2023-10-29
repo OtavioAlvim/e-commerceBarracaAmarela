@@ -27,7 +27,7 @@ $(document).ready(function () {
     // Quando o usuário seleciona uma opção no select
     $('#opcoes').change(function () {
         var selecionado = $(this).val();
-        console.log(selecionado);
+        // console.log(selecionado);
         if (selecionado === '9999999999') {
             $.ajax({
                 url: '../lib/pagina_inicial/CarregaProdutos.php',
@@ -55,7 +55,7 @@ $(document).ready(function () {
     // Quando o usuário digitar algo no campo de pesquisa
     $('#descricao_prod').on('input', function () {
         var pesquisa = $(this).val();
-        console.log(pesquisa);
+        // console.log(pesquisa);
         $.ajax({
             url: '../lib/pagina_inicial/CarregaPesquisa.php',
             method: 'POST',

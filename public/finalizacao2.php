@@ -41,6 +41,7 @@ $formaPag = $sql->fetchAll(PDO::FETCH_ASSOC);
     <title>Barraca Amarela</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="../assets/img/padrao_sistema/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         body {

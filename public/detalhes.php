@@ -39,6 +39,7 @@ $image_caminho
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Barraca Amarela</title>
+    <link rel="shortcut icon" href="../assets/img/padrao_sistema/favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
@@ -105,7 +106,7 @@ $image_caminho
         <div class="container">
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-2 align-items-start">
                 <div class="col">
-                    <img src="<?php echo $image_caminho ?>" class="img-thumbnail" alt="..." style=" width: 100%;">
+                    <img src="<?php echo $image_caminho ?>" class="img-thumbnail" alt="..." style=" width: 100%; max-height: 70vh;">
                 </div>
                 <div class="col">
                     <div class="col">
@@ -134,7 +135,7 @@ $image_caminho
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form><br>
                                 <H4>R$ <?php
                                         $nome_preco = $_SESSION['OBSERVACAO'];
                                         if ($nome_preco == 'atacado') {
