@@ -18,8 +18,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            /* background-size: 100%;
-            background-position: center; */
+            background-size: 100%;
+            background-position: center;
         }
 
         .login-container {
