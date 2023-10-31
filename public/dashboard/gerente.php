@@ -51,12 +51,12 @@ require('../../lib/login/verificaLogin.php');
             <li class="nav-item">
               <a class="nav-link" href="./gerente_pedidos.php">PEDIDOS PENDENTES</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" data-bs-toggle="modal" data-bs-target="#planilha">IMPORTAR PLANILHA</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./gerente-config.php">CONFIGURAÇÕES</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="../../lib/login/logout.php">SAIR</a>
             </li>
@@ -203,37 +203,55 @@ require('../../lib/login/verificaLogin.php');
   <script src="../../assets/js/dashboard.js"></script>
 
   <?php
-    if (isset($_SESSION['pedido_cancelado'])) :
+    if (isset($_SESSION['dados_atualizado'])) :
     ?>
         <script>
             Swal.fire({
                 //   position: 'top-end',
                 icon: 'success',
-                title: 'Produto Inserido com sucesso!',
+                title: 'Dados Atualizados com sucesso',
                 showConfirmButton: false,
-                timer: 500
+                timer: 1500
             })
         </script>
     <?php
     endif;
-    unset($_SESSION['pedido_cancelado']);
+    unset($_SESSION['dados_atualizado']);
     ?>
 
 
     <?php
-    if (isset($_SESSION['produto_sem_item'])) :
+    if (isset($_SESSION['dados_invalidos'])) :
     ?>
         <script>
             Swal.fire({
                 icon: 'error',
-                title: 'Quantidade minima não inserida',
+                title: 'Tamanho do arquivo e/ou formato invalido',
                 showConfirmButton: false,
                 timer: 1000
             })
         </script>
     <?php
     endif;
-    unset($_SESSION['produto_sem_item']);
+    unset($_SESSION['dados_invalidos']);
+    ?>
+
+
+<?php
+    if (isset($_SESSION['produtos_recuperados'])) :
+    ?>
+        <script>
+            Swal.fire({
+                //   position: 'top-end',
+                icon: 'success',
+                title: 'Novos produtos Importados',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    <?php
+    endif;
+    unset($_SESSION['produtos_recuperados']);
     ?>
 </body>
 

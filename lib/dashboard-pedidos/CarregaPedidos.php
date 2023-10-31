@@ -60,7 +60,9 @@ $pdo2 = new PDO('sqlite:../db/carrinho.db');
                     </tr>
         <?php
                 }else{
-                    
+
                 }
+
             }
+
         }

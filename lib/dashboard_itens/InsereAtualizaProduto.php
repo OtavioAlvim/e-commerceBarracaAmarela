@@ -1,4 +1,5 @@
 <?php
+session_start();
 $pdo = new PDO('sqlite:../db/bancoImagens.db');
 $pdo2 = new PDO('sqlite:../db/produto.db');
 
@@ -36,7 +37,9 @@ if (!empty($_FILES['FOTO_PRODUTO']['name'])) {
         $sql->bindValue(':nome_imagem', $id_produto . "." . $file_extension[1]);
         $sql->execute();
     } else {
+        $_SESSION['dados_invalidos'] = true;
         echo "Arquivo invalido";
+        header("location: ../../public/dashboard/gerente.php");
         // deve voltar para a pagina de edição de produtos e dar uma mensagem que o produto é invalido 
     }
 }
@@ -66,4 +69,5 @@ if (!empty($_FILES['FOTO_PRODUTO']['name'])) {
     $atacado = $_POST['UNITARIOATACADO'];
     $observacao = $_POST['OBSERVACAO'];
     $sql2->execute();
+    $_SESSION['dados_atualizado'] = true;
 header("location: ../../public/dashboard/gerente.php");

@@ -42,21 +42,21 @@ require('../../lib/login/verificaLogin.php');
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal">RECEBER CARGA DE PRODUTOS</a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exportar">EXPORTAR PEDIDOS</a>
                         </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="./gerente_pedidos.php">PEDIDOS PENDENTES</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="modal" data-bs-target="#planilha">IMPORTAR PLANILHA</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./gerente-config.php">CONFIGURAÇÕES</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="../../lib/login/logout.php">SAIR</a>
                         </li>

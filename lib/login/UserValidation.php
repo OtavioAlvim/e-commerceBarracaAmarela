@@ -3,7 +3,8 @@ require_once '../conexao.php';
 session_start();
 
 if (empty($_POST['user']) || empty($_POST['pass'])) {
-    $_SESSION['erro'] == true;
+    session_start();
+    $_SESSION['erro'] = true;
     header("location: ../../index.php");
 }
 $username = $_POST['user'];
@@ -20,7 +21,8 @@ if ($username == "gerente" && $password == "adm452864") {
     header("location: ../../public/dashboard/gerente.php");
 } else {
     if (!is_int($password)) {
-        $_SESSION['erro'] == true;
+        session_start();
+        $_SESSION['erro'] = true;
         header("location: ../../index.php");
     }
     $sql = "SELECT * FROM clientes c JOIN perfilclientes p ON c.ID_PERFIL = p.ID_PERFIL WHERE  c.SITE ='{$username}' AND c.SENHA_LIBERACAO_VENDA ={$password}";
@@ -30,7 +32,8 @@ if ($username == "gerente" && $password == "adm452864") {
     foreach ($resultado as $resultado) {
     }
     if (empty($resultado)) {
-        $_SESSION['error'] = true;
+        session_start();
+        $_SESSION['erro'] = true;
 
         header('location: ../../index.php');
     } else {

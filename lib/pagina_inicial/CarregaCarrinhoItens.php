@@ -15,7 +15,7 @@ $results = $sql->fetchAll(PDO::FETCH_ASSOC);
             <th scope="col" class="col-1">ID</th>
             <th scope="col" class="col-7">DESCRICAO</th>
             <th scope="col" class="col-1">QTD</th>
-            <th scope="col" class="col-1">TOTAL</th>
+            <th scope="col" class="col-2">TOTAL</th>
             <th scope="col" class="col-1">REMOVER</th>
         </tr>
     </thead>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../conexao.php');
 $pdo2 = new PDO('sqlite:../db/produto.db');
 
@@ -57,4 +58,5 @@ foreach ($produto as $produtos) {
         $sql2->execute();
     }
 }
+$_SESSION['produtos_recuperados'] = true;
 

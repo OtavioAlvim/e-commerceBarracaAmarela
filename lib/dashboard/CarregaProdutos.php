@@ -11,10 +11,10 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 <table class="table table-hover">
     <thead>
         <tr>
-            <th class="col text-center" scope="col">ID</th>
-            <th scope="col">DESCRICAO</th>
-            <th class="col text-center" scope="col">UNIDADE</th>
-            <th class="col text-center" scope="col">EDITAR</th>
+            <th class="col-1 text-center" scope="col">ID</th>
+            <th class="col-9" scope="col">DESCRICAO</th>
+            <th class="col-1 text-center" scope="col">UNIDADE</th>
+            <th class="col-1 text-center" scope="col">EDITAR</th>
         </tr>
     </thead>
     <tbody>
@@ -22,11 +22,11 @@ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $result) {
         ?>
             <tr>
-                <th scope="row"><?php echo $result['CODITEM']?></th>
-                <td><?php echo $result['DESCRICAO']?></td>
-                <td><?php echo $result['UNIDADE']?></td>
-                <td>
-                        <a type="submit" class="btn btn-dark btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM']?>">EDITAR</a>
+                <th class="text-center" scope="row"><?php echo $result['CODITEM'] ?></th>
+                <td><?php echo $result['DESCRICAO'] ?></td>
+                <td class="text-center"><?php echo $result['UNIDADE'] ?></td>
+                <td class="text-center">
+                    <a type="submit" class="btn btn-dark btn-sm" href="./gerente-item.php?PRODUTO=<?php echo $result['CODITEM'] ?>">EDITAR</a>
                 </td>
             </tr>
         <?php }
