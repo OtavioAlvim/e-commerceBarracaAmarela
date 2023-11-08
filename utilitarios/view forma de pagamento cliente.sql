@@ -1,0 +1,1 @@
+SELECT fc.ID_FORMAPGTO,fc.ID_CLIENTE,fc.ID_EMPRESA,f.DESCRICAO FROM formaspgtocliente fc JOIN formaspgto f ON fc.ID_FORMAPGTO = f.ID
