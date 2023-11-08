@@ -26,7 +26,6 @@ if (!empty($_FILES['FOTO_PRODUTO']['name'])) {
 
 
     if ($file_type == "image/png" || $file_type == "image/jpeg" && $file_size <= 90000) {
-        echo "arquivo valido";
         // move o arquivo para o caminho de destino
         move_uploaded_file($file_tmp, $upload_dir . $id_produto . "." . $file_extension[1]);
         // insere o caminho no banco de dados
@@ -38,7 +37,6 @@ if (!empty($_FILES['FOTO_PRODUTO']['name'])) {
         $sql->execute();
     } else {
         $_SESSION['dados_invalidos'] = true;
-        echo "Arquivo invalido";
         header("location: ../../public/dashboard/gerente.php");
         // deve voltar para a pagina de edição de produtos e dar uma mensagem que o produto é invalido 
     }
